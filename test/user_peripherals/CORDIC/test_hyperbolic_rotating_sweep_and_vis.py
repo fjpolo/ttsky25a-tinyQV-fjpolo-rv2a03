@@ -19,7 +19,7 @@ from user_peripherals.CORDIC.test_utils import test_sinh_cosh
 # When submitting your design, change this to the peripheral number
 # in peripherals.v.  e.g. if your design is i_user_peri05, set this to 5.
 # The peripheral number is not used by the test harness.
-PERIPHERAL_NUM = 38
+PERIPHERAL_NUM = 12
 
 @cocotb.test()
 async def test_hyperbolic_sweep_and_vis(dut):

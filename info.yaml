@@ -1,9 +1,9 @@
 # Tiny Tapeout project information
 project:
-  title:        "TinyQV - Crowdsourced Risc-V SoC"      # Project title
+  title:        "TinyQV 'Asteroids' - Crowdsourced Risc-V SoC"      # Project title
   author:       "Michael Bell, et al"      # Your name
   discord:      "rebelmike"      # Your discord username, for communication and automatically assigning you a Tapeout role (optional)
-  description:  "A Risc-V SoC with peripherals from the Tiny Tapeout Risc-V challenge"      # One line description of what your project does
+  description:  "A Risc-V SoC with peripherals from the Tiny Tapeout Risc-V challenge, codename 'Asteroids'"      # One line description of what your project does
   language:     "Verilog" # other examples include SystemVerilog, Amaranth, VHDL, etc
   clock_hz:     64000000       # Clock frequency in Hz (or 0 if not applicable)
 
@@ -70,8 +70,9 @@ project:
     - "user_peripherals/pwl_synth/pwl_synth.sv"
     - "user_peripherals/pwl_synth/pwl_synth_memory.sv"
     - "user_peripherals/wdt/tqvp_nkanderson_wdt.sv"
-    - "user_peripherals/RV2A03/apu.v"
-    - "user_peripherals/RV2A03/peripheral.v"
+    - "user_peripherals/vga_gfx/peripheral.v"
+    - "user_peripherals/vga_gfx/vga_timing.v"
+    - "user_peripherals/vga_gfx/latch_config.v"
     - "user_peripherals/tqvp_laurie_dwarf_line_table_accelerator.sv"
     - "user_peripherals/pulse_transmitter/peripheral.v"
     - "user_peripherals/pulse_transmitter/carrier.v"

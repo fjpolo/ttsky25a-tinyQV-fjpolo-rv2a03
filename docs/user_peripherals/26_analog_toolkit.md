@@ -8,8 +8,6 @@ Peripheral index: 26
 
 Allows building low frequency ADCs, DACs, capacitive sensors etc. using passives only
 
-(To be expanded)
-
 ## Register map
 
 | Address | Name  | Access | Description                                                         |
@@ -37,13 +35,42 @@ Build one of the test circuits:
     should cover a reasonable range of values, say, 64 to 192
 
 - DAC
-  - ...
+  - create an RC low-pass filter from a resistor and
+    a capacitor attached to `uo_out[1]`
+  - generate a PWM signal by setting the frequency
+    using DIV (register 4) and the duty cycle using
+    OUT0 (register 0)
+  - the low-pass filter should smooth the PWM output
+    to a an average voltage corresponding to the
+    duty cycle
 
 - Capacitive sensor
-  - ...
+  - connect the touch pad (or just two wires) to
+    `ui_in[0]` and `uo_out[1]`
+  - set DIV (register 4) to 0x60 (~64Hz clock)
+  - set OUT0 (register 0) to 0x80 (1/2 duty cycle)
+  - set CH (register 5) to 0 (set input to `ui_in[0]`)
+  - read IN (register 3) for a value that depends on
+    the capacitance between `ui_in[0]` and `uo_out[1]`
+  - tweak DIV (register 4) to make the sensor
+    more sensitive in the capacitance range you are
+    interested in
 
 - LED dimmer
-  - ...
+  - connect an LED to `uo_out[1]` and ground, using a
+    series resistor appropriate for the LED voltage
+    drop and current rating, assuming Vcc of 3.3V
+  - set DIV (register 4) to 0xa0 (~1kHz clock)
+  - set OUT0 (register 0) to tweak the PWM duty cycle
+  - the range 0x00 to 0x7f maps to the duty cycle
+    in a quasi-exponential way, and the human eye
+    percieves brightness in a quasi-logarithmic
+    way, so you should see a smooth ramp in
+    apparent brightness as you tweak the values
+  - you can add two more LEDs to `uo_out[2]` and
+    `uo_out[3]` and set their brightness using
+    OUT1 (register 1) and OUT2 (register 2)
+    respectively
 
 ## External hardware
 

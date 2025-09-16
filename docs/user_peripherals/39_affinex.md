@@ -17,14 +17,12 @@ Author: Adam Gebregziaber
 
 Peripheral index: 39
 
+
 ## What it does
 
-An affine transformation is a geometric transformation that combines linear transformation operations like rotation, scaling, shearing or reflection. These transformations are widely used in areas like computer graphics and image processing.
+An affine transformation is a geometric operation that combines linear transformation functions such as rotation, scaling, shearing or reflection. These transformations are widely used in areas like computer graphics and image processing.
 
-The project implements a 2D affine transformation accelerator which is designed to perform these operations in hardware using Q8.16 fixed point arithmetic.
-
-
-
+The project implements a 2D affine transformation accelerator that performs the geometric operations directly in hardware using Q7.8 fixed-point arithmetic for efficient computation.
 
 
 Affine transformation in 2D can be expressed as:
@@ -82,8 +80,7 @@ Equation:
 
 ## How to test
 
-The following test cases demonstrate common affine operations.
-
+The following test cases demonstrate common affine operations using matrix coefficients and translation offsets.
 
 
 | Transformation | a  | b   | d   | e  | tx   | ty   | Input (x, y) | Expected Output (x’, y’) |
@@ -114,20 +111,71 @@ To help visualize the transformations, a conceptual square shape is plotted alon
 </table>
 </div>
 
-
 ## Example Usage
 
-1. Configure a 45° rotation:
+1. **Configure the transformation coefficients**
+
+   To perform a 45° rotation, the user has to precompute and set up the 2D affine matrix. The values below correspond to the rotation 
+   matrix for a 45° transformation.
 
 ```text
-A = 0.707, B = -0.707
-D = 0.707, E =  0.707
-TX = 0,    TY = 0
+   A  =  0.707   // cos(45°)
+   B  = -0.707   // -sin(45°)
+   D  =  0.707   // sin(45°)
+   E  =  0.707   // cos(45°)
+   TX =  0       
+   TY =  0
 
 ```
 
-2. Write input point: x = 10.0 and y' = 0.0
-3. Read output:       x' = 7.07 and y' = 7.07
+2. **Load the input point**
+
+   Write the x,y coordinates of the point that you want to transform;
+
+```text
+   XIN = 10.0
+   YIN = 0.0
+```
+
+3. **Start the transformation**
+
+   Start the process by writing 1 to the control register;
+
+```text
+   CONTROL = 1
+```
+4. **Read the result**
+
+```text
+   XOUT = 7.07
+   YOUT = 7.07
+
+```
+
+
+## Design Verification
+
+The design is verified using **Cocotb** testbench over a wide range of input cases and the output is compared against software calculated results using the Q7.8 fixed point arithmetic.
+### What’s Tested
+
+- **Sample test cases for all affine operations**:
+  - Rotation (45° and 90°)
+  - Scaling (×2, ×0.5)
+  - Shearing (XY)
+  - Reflections (across X/Y)
+
+- **Corner cases**:
+  - Zero inputs
+  - Max/min values (±128)
+  - Fractional and negative numbers
+
+- **Random tests**:
+  - 40 randomly generated transformations and input points
+
+
+## Future Work
+- Add support for batch processing of multiple points instead of one at a time.
+- Expand to 3D affine transformations.
 
 
 ## Reference 

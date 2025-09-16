@@ -29,8 +29,9 @@ module tqvp_jnms_pdm (
 );
     wire rst = !rst_n;
 
-    reg [31:0] pdm_ctrl;
-    reg [31:0] pdm_clkp;
+    reg [0:0] pdm_enable;
+    reg [7:0] pdm_period;
+    reg [2:0] pdm_select;
 
     reg [7:0] pdm_phase;
     reg       pdm_clk;
@@ -40,39 +41,35 @@ module tqvp_jnms_pdm (
     wire        pcm_valid;
     wire [15:0] pcm_from_filter;
 
-    wire pdm_clk_out = pdm_ctrl[0] & pdm_clk;
-    wire pdm_dat_in = ui_in[0];
+    wire pdm_clk_out = pdm_enable[0] & pdm_clk;
+    wire pdm_dat_in = ui_in[pdm_select];
 
     cic3_pdm  cic(pdm_clk, rst, pdm_dat_in, pcm_from_filter, pcm_valid);
 
     always @(posedge clk) begin
         if (!rst_n) begin
-            pdm_ctrl <= 0;
-            pdm_clkp <= 0;
+            pdm_enable <= 0;
+            pdm_period <= 0;
+            pdm_select <= 0;
             pdm_phase <= 0;
             pdm_clk <= 0;
         end else begin
-            if (address == 6'h0) begin
-                if (data_write_n != 2'b11)              pdm_ctrl[7:0]   <= data_in[7:0];
-                if (data_write_n[1] != data_write_n[0]) pdm_ctrl[15:8]  <= data_in[15:8];
-                if (data_write_n == 2'b10)              pdm_ctrl[31:16] <= data_in[31:16];
+            if (data_write_n != 2'b11) begin
+                if (address == 6'h0) pdm_enable[0]   <= data_in[0];
+                if (address == 6'h4) pdm_period[7:0] <= data_in[7:0];
+                if (address == 6'h8) pdm_select[2:0] <= data_in[2:0];
             end
-            if (address == 6'h4) begin
-                if (data_write_n != 2'b11)              pdm_clkp[7:0]   <= data_in[7:0];
-                if (data_write_n[1] != data_write_n[0]) pdm_clkp[15:8]  <= data_in[15:8];
-                if (data_write_n == 2'b10)              pdm_clkp[31:16] <= data_in[31:16];
-            end
-            pdm_clk   <= pdm_phase   < (pdm_clkp >> 1);
-            pdm_phase <= pdm_phase+1 < pdm_clkp ? pdm_phase+1 : 0;
+            pdm_clk   <= pdm_phase   < (pdm_period >> 1);
+            pdm_phase <= pdm_phase+1 < pdm_period ? pdm_phase+1 : 0;
         end
     end
 
-    // TODO(mastensg): output PCM sample clock on one of the pins.
     assign uo_out = {pdm_clk_out, pdm_clk_out, pdm_clk_out, pdm_clk_out, pdm_clk_out, pdm_clk_out, pdm_clk_out, pdm_clk_out};
 
-    assign data_out = (address == 6'h0) ? pdm_ctrl :
-                      (address == 6'h4) ? pdm_clkp :
-                      (address == 6'h8) ? {16'h0, pcm} :
+    assign data_out = (address == 6'h0) ? {31'h0, pdm_enable} :
+                      (address == 6'h4) ? {24'h0, pdm_period} :
+                      (address == 6'h8) ? {29'h0, pdm_select} :
+                      (address == 6'hc) ? {16'h0, pcm} :
                       32'h0;
 
     assign data_ready = 1;
@@ -82,10 +79,10 @@ module tqvp_jnms_pdm (
             pdm_int <= 0;
             pcm <= 0;
         end else begin
-            if (pdm_ctrl[0] & pcm_valid) begin
+            if (pdm_enable[0] & pcm_valid) begin
                 pcm <= pcm_from_filter;
                 pdm_int <= 1;
-            end else if (address == 6'h8 && data_read_n == 2'b10) begin
+            end else if (address == 6'hc && data_read_n != 2'b11) begin
                 pdm_int <= 0;
             end else begin
                 // Hold current values
@@ -97,6 +94,6 @@ module tqvp_jnms_pdm (
 
     assign user_interrupt = pdm_int;
 
-    wire _unused = &{ui_in[7], ui_in[5:0], data_read_n, 1'b0};
+    wire _unused = &{data_read_n, 1'b0};
 
 endmodule

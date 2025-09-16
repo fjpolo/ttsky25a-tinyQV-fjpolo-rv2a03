@@ -5,10 +5,16 @@ USER_PERIPHERAL_5 = baby_vga.test
 USER_PERIPHERAL_6 = wdt.test
 USER_PERIPHERAL_7 = CAN_test
 USER_PERIPHERAL_8 = prism.test
-USER_PERIPHERAL_9 =
+USER_PERIPHERAL_9 = vga_gfx.test
 USER_PERIPHERAL_10 = pdm.test
 USER_PERIPHERAL_11 = pulse_transmitter.test
-USER_PERIPHERAL_12 =
+USER_PERIPHERAL_12 = CORDIC.test_trigonometric_simple \
+					 CORDIC.test_linear_simple \
+					 CORDIC.test_hyperbolic_vectoring_square_vis \
+					 CORDIC.test_hyperbolic_vectoring_simple \
+					 CORDIC.test_hyperbolic_rotating_sweep_and_vis \
+					 CORDIC.test_hyperbolic_rotating_simple \
+					 CORDIC.test_circular_rotating_sweep_and_vis
 USER_PERIPHERAL_13 = vgaconsole.test
 USER_PERIPHERAL_14 =
 USER_PERIPHERAL_15 = tiny-tone.mkTinyTone_Peripheral
@@ -32,15 +38,9 @@ USER_PERIPHERAL_32 = fpu.test
 USER_PERIPHERAL_33 = pwl_synth.test
 USER_PERIPHERAL_34 = tqvp_laurie_dwarf_line_table_accelerator.test
 USER_PERIPHERAL_35 = prng.test
-USER_PERIPHERAL_36 = RV2A03.test
+USER_PERIPHERAL_36 = 
 USER_PERIPHERAL_37 = intercal_alu.test
-USER_PERIPHERAL_38 = CORDIC.test_trigonometric_simple \
-					 CORDIC.test_linear_simple \
-					 CORDIC.test_hyperbolic_vectoring_square_vis \
-					 CORDIC.test_hyperbolic_vectoring_simple \
-					 CORDIC.test_hyperbolic_rotating_sweep_and_vis \
-					 CORDIC.test_hyperbolic_rotating_simple \
-					 CORDIC.test_circular_rotating_sweep_and_vis
+USER_PERIPHERAL_38 = 
 USER_PERIPHERAL_39 = affinex.test
 
 expand_tests = $(foreach num,$(1),$(USER_PERIPHERAL_$(num)))

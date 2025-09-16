@@ -31,7 +31,11 @@
 `define USE_STEREO_POS
 `define USE_OSC_SYNC // currently only implemented to work with USE_P_LATCHES_ONLY, need write back condition (override oct_enable) for next step otherwise
 `define USE_4_BIT_MODE // only works together with USE_OSC_SYNC
-//`define USE_OSC_SYNC_ONLY_FOR_SOME_CHANNELS
+`define USE_OSC_SYNC_ONLY_FOR_SOME_CHANNELS
+`define USE_SWAPPED_DETUNE_SIGNS
+`define USE_COMMON_SAT_STEREO
+`define USE_DETUNE_FIFTH
+
 
 `define USE_MORE_REG_RESETS
 
@@ -52,7 +56,7 @@
 
 `ifdef USE_NEW_REGMAP
 //	`define CHANNEL_MODE_BITS 4
-	`define CHANNEL_MODE_BITS 11
+	`define CHANNEL_MODE_BITS 12
 	`ifdef USE_NEW_REGMAP_B
 		`define REGS_PER_CHANNEL 8
 		`define REG_BITS 13 // Could be 13? If the registers don't grow too much
@@ -92,6 +96,7 @@
 `define CHANNEL_MODE_BIT_PWL_OSC 8
 `define CHANNEL_MODE_BIT_OSC_SYNC_EN 9
 `define CHANNEL_MODE_BIT_OSC_SYNC_SOFT 10
+`define CHANNEL_MODE_BIT_DETUNE_FIFTH 11
 
 `define CHANNEL_MODE_FLAGS_OSC_SYNC_MASK ((1<<`CHANNEL_MODE_BIT_OSC_SYNC_EN)|(1<<`CHANNEL_MODE_BIT_OSC_SYNC_SOFT))
 

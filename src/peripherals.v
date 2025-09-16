@@ -188,8 +188,8 @@ module tinyQV_peripherals #(parameter CLOCK_MHZ=64) (
             3'b011: audio <= uo_out_from_simple_peri[5][7];  // Matt PWM
             3'b100: audio <= uo_out_from_user_peri[8][7];    // Prism
             3'b101: audio <= uo_out_from_simple_peri[10][7]; // Analog toolkit
-            3'b110: audio <= uo_out_from_simple_peri[17][6]; // PWL Synth left
-            3'b111: audio <= uo_out_from_simple_peri[5][7];  // Matt PWM
+            3'b110: audio <= uo_out_from_user_peri[17][6]; // PWL Synth left
+            3'b111: audio <= uo_out_from_user_peri[15][7];   // Tiny tone
         endcase
     end
 
@@ -333,7 +333,7 @@ module tinyQV_peripherals #(parameter CLOCK_MHZ=64) (
         .user_interrupt(user_interrupts[8])
     );
 
-    tqvp_full_empty i_user_peri09 (
+    tqvp_rebelmike_vga_gfx i_user_peri09 (
         .clk(clk),
         .rst_n(rst_n),
 
@@ -390,7 +390,7 @@ module tinyQV_peripherals #(parameter CLOCK_MHZ=64) (
         .user_interrupt(user_interrupts[11])
     );
 
-    tqvp_full_empty i_user_peri12 (
+    tqvp_CORDIC i_user_peri12 (
         .clk(clk),
         .rst_n(rst_n),
 
@@ -783,7 +783,7 @@ module tinyQV_peripherals #(parameter CLOCK_MHZ=64) (
         .data_ready(data_ready_from_user_peri[19])
     );
 
-    tqvp_fjpolo_rv2a03 i_user_peri36 (
+    tqvp_full_empty i_user_peri36 (
         .clk(clk),
         .rst_n(rst_n),
 
@@ -817,24 +817,22 @@ module tinyQV_peripherals #(parameter CLOCK_MHZ=64) (
         .data_ready(data_ready_from_user_peri[21])
     );
 
-    reg cordic_interrupt;
-    tqvp_CORDIC i_user_peri38       (.clk(clk),
-                                     .rst_n(rst_n),
+    tqvp_full_empty i_user_peri38 (
+        .clk(clk),
+        .rst_n(rst_n),
 
-                                     .ui_in(ui_in),
-                                     .uo_out(uo_out_from_user_peri[22]),
+        .ui_in(ui_in),
+        .uo_out(uo_out_from_user_peri[22]),
 
-                                     .address(addr_in[5:0]),
-                                     .data_in(data_in),
+        .address(addr_in[5:0]),
+        .data_in(data_in),
 
-                                     .data_write_n(data_write_n    | {2{~peri_user[22]}}),
-                                     .data_read_n(data_read_n_peri | {2{~peri_user[22]}}),
+        .data_write_n(data_write_n    | {2{~peri_user[22]}}),
+        .data_read_n(data_read_n_peri | {2{~peri_user[22]}}),
 
-                                     .data_out(data_from_user_peri[22]),
-                                     .data_ready(data_ready_from_user_peri[22]),
-
-                                     .user_interrupt(cordic_interrupt));
-
+        .data_out(data_from_user_peri[22]),
+        .data_ready(data_ready_from_user_peri[22])
+    );
 
     tqvp_affinex i_user_peri39 (
         .clk(clk),

@@ -15,7 +15,7 @@ You can also include images in this folder and reference them in the markdown. E
 
 Author: Maciej Lewandowski
 
-Peripheral index: 38
+Peripheral index: 12
 
 ## What it does
 
@@ -28,7 +28,7 @@ Many DSP/control tasks need trigonometric functions and fundamental arithmetic o
 
 This algorithm is often covered in standard textbooks and notes [4, 5]; therefore, only a brief description is provided to understand how to interact with the underlying hardware. In this design, CORDIC runs for N = 12 (12 clock cycles) with inputs, states and outputs being 16-bit signed, fixed point values. In its unified form, it updates three state variables ($x_i, y_i, z_i$) each iteration. In a general, unified form, this algorithm and the designed hardware solve the following set of equations : 
 
-![unified CORDIC equations](37_cordic_equation.png)
+![unified CORDIC equations](12_cordic_equation.png)
 
 Key ideas for using it : 
 - Inputs/outputs: provide initial ($x_0, y_0, z_0$) via registers (exposed as A, B and the third value is determined automatically). Every iteration, the output changes and provides some value  
@@ -75,20 +75,20 @@ Methods :
 - We report mean absolute error (MAE) for each of the functions 
 
 ### Computed Sin(x) value (Verilog simulation compared against Python numpy values)
-![](37_sine.png)
+![](12_sine.png)
 
 ### Computed Cos(x) value (Verilog simulation compared against Python numpy values)
-![](37_cosine.png)
+![](12_cosine.png)
 
 ### Computed Sinh(x) value (Verilog simulation compared against Python numpy values)
-![](37_sinh.png)
+![](12_sinh.png)
 
 ### Computed Cosh(x) value (Verilog simulation compared against Python numpy values)
-![](37_cosh.png)
+![](12_cosh.png)
 
 ### Computed sqrt value (Verilog simulation compared against Python numpy values)
 The value is obtained from out1, then shifted by two and multiplied by the inverse of $\frac{1}{K_{h}} \approx 1.2075$. Finally, the value is compared against the value obtained from numpy.
-![](37_sqrt.png)
+![](12_sqrt.png)
 
 ## Register map
 

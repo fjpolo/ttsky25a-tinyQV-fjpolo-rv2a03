@@ -4,9 +4,9 @@ This is a guide for compiling a program for TinyQV, and testing it in cocotb or 
 
 ## Setup
 
-- Get the [TinyQV toolchain](https://github.com/MichaelBell/riscv-gnu-toolchain/releases/tag/13.2.0-tqv-1.0) (a slightly modified version of the standard Risc-V GNU toolchain).
+- Get the [TinyQV toolchain](https://github.com/MichaelBell/riscv-gnu-toolchain/releases/tag/15.1.0-tqv-2.0) (a slightly modified version of the standard Risc-V GNU toolchain).
 - Extract to `/opt/tinyQV`, or set the `RISCV_TOOLCHAIN` environment variable to where you have extracted it.
-- Clone the [tinyQV-sdk](https://github.com/MichaelBell/tinyQV-sdk).
+- Clone the [tinyQV-sdk](https://github.com/MichaelBell/tinyQV-sdk), and checkout the `ttsky25a` branch.
 
 ## Creating a new project
 

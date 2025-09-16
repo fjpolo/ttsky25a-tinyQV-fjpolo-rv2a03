@@ -113,8 +113,8 @@ assign irqtx=irqen[2]&(~rts);
 	
 //////////////// BAUD reg ////////////////
 
-reg [9:0]bauddiv=10'h3FF;
-reg [2:0]irqen=0;
+reg [9:0]bauddiv; //=10'h3FF;
+reg [2:0]irqen; //=0;
 
 always @(posedge clk or posedge reset) 
 	if (reset) begin 

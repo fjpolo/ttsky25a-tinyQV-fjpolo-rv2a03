@@ -51,10 +51,7 @@ module tqvp_rebeccargb_intercal_alu (
         32'h0
     );
 
-    assign data_ready = (
-        (address[1:0] == 2'b00 && data_read_n[1] != data_read_n[0]) ||              // 16-bit or 32-bit access
-        (address[1:0] == 2'b10 && data_read_n == 2'b01)                             // 16-bit access
-    );
+    assign data_ready = 1;
 
     // List all unused inputs to prevent warnings
     wire _unused = &{ui_in, 1'b0};
