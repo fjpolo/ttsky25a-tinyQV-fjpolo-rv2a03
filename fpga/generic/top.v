@@ -89,6 +89,8 @@ module tinyQV_top (
     wire       debug_signal;
     reg  [7:6] gpio_out_sel;
 
+    assign UART_TXD = debug_uart_txd;
+
     reg [3:0] connect_peripheral;
 
     // Debug
