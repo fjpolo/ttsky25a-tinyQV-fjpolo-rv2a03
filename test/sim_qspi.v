@@ -17,8 +17,8 @@ module sim_qspi_pmod (
     output reg [7:0] debug_data
 );
 
-    parameter   ROM_BITS       = 15;
-    parameter   RAM_BITS       = 13;
+    parameter   ROM_BITS       = 15;    // 32kiB
+    parameter   RAM_BITS       = 13;    // 8kiB
 
     reg [31:0] cmd;
     reg [24:0] addr;
@@ -30,9 +30,9 @@ module sim_qspi_pmod (
 
     wire any_select = qspi_flash_select && qspi_ram_a_select && qspi_ram_b_select;
 
-    reg [7:0] rom [0:(1 << ROM_BITS)-1] /*synthesis syn_ramstyle="block_ram"*/;
-    reg [7:0] ram_a [0:(1 << RAM_BITS)-1] /*synthesis syn_ramstyle="block_ram"*/;
-    reg [7:0] ram_b [0:(1 << RAM_BITS)-1] /*synthesis syn_ramstyle="block_ram"*/;
+    reg [7:0] rom [0:(1 << ROM_BITS)-1] /*synthesis syn_ramstyle="block_ram"*/;     // 32kiB
+    reg [7:0] ram_a [0:(1 << RAM_BITS)-1] /*synthesis syn_ramstyle="block_ram"*/;   // 8kiB
+    reg [7:0] ram_b [0:(1 << RAM_BITS)-1] /*synthesis syn_ramstyle="block_ram"*/;   // 8kiB
 
     parameter INIT_FILE = "";
     initial begin
