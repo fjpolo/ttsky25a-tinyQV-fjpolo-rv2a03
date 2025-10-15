@@ -19,7 +19,7 @@ module tinyQV_top (
         output flash_spi_wp_n,          // write protect
         output flash_spi_hold_n         // hold operations
 );
-    localparam CLOCK_MHZ = 14;
+    localparam CLOCK_MHZ = 27;
 
     // Address to peripheral map
     localparam PERI_NONE = 4'h0;
