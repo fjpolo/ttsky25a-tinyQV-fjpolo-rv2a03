@@ -6,7 +6,7 @@
 //
 // -----------------------------------------------------------------------------
 
-`default_nettype none
+// `default_nettype none
 module tqvp_meiniKi_waveforms (
     input         clk,          // Clock - the TinyQV project clock is normally set to 64MHz.
     input         rst_n,        // Reset_n - low to reset.

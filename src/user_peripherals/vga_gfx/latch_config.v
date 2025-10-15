@@ -1,4 +1,4 @@
-`default_nettype none
+// `default_nettype none
 
 // A wrapper to use a latch as a register
 // Note no reset - reset using data

@@ -2,7 +2,7 @@
  * Copyright (c) 2025 Enmanuel Rodriguez
  * SPDX-License-Identifier: Apache-2.0
  */
-`default_nettype none
+// `default_nettype none
 module hamming_7_4 (
     input clk,
     input rst_n,

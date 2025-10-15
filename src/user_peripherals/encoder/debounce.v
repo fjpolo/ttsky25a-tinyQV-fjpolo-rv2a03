@@ -1,4 +1,4 @@
-`default_nettype none
+// `default_nettype none
 
 module debounce #(
     parameter HIST_LEN = 8

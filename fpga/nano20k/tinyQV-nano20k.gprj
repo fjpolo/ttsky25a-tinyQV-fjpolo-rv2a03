@@ -1,0 +1,39 @@
+<?xml version="1" encoding="UTF-8"?>
+<!DOCTYPE gowin-fpga-project>
+<Project>
+    <Template>FPGA</Template>
+    <Version>5</Version>
+    <Device name="GW2AR-18C" pn="GW2AR-LV18QN88C8/I7">gw2ar18c-000</Device>
+    <FileList>
+        <File path="C:/Workspace/FPGA/ttsky25a-tinyQV-fjpolo-rv2a03/fpga/generic/bram.v" type="file.verilog" enable="1"/>
+        <File path="C:/Workspace/FPGA/ttsky25a-tinyQV-fjpolo-rv2a03/fpga/generic/peripherals.v" type="file.verilog" enable="1"/>
+        <File path="C:/Workspace/FPGA/ttsky25a-tinyQV-fjpolo-rv2a03/fpga/generic/sim_qspi.v" type="file.verilog" enable="1"/>
+        <File path="C:/Workspace/FPGA/ttsky25a-tinyQV-fjpolo-rv2a03/fpga/generic/top.v" type="file.verilog" enable="1"/>
+        <File path="C:/Workspace/FPGA/ttsky25a-tinyQV-fjpolo-rv2a03/src/latch_mem.v" type="file.verilog" enable="1"/>
+        <File path="C:/Workspace/FPGA/ttsky25a-tinyQV-fjpolo-rv2a03/src/peri_byte_empty.v" type="file.verilog" enable="1"/>
+        <File path="C:/Workspace/FPGA/ttsky25a-tinyQV-fjpolo-rv2a03/src/peri_byte_example.v" type="file.verilog" enable="1"/>
+        <File path="C:/Workspace/FPGA/ttsky25a-tinyQV-fjpolo-rv2a03/src/peri_full_empty.v" type="file.verilog" enable="1"/>
+        <File path="C:/Workspace/FPGA/ttsky25a-tinyQV-fjpolo-rv2a03/src/peri_full_example.v" type="file.verilog" enable="1"/>
+        <File path="C:/Workspace/FPGA/ttsky25a-tinyQV-fjpolo-rv2a03/src/peri_full_example_no_irq.v" type="file.verilog" enable="1"/>
+        <File path="C:/Workspace/FPGA/ttsky25a-tinyQV-fjpolo-rv2a03/src/tinyQV/cpu/alu.v" type="file.verilog" enable="1"/>
+        <File path="C:/Workspace/FPGA/ttsky25a-tinyQV-fjpolo-rv2a03/src/tinyQV/cpu/core.v" type="file.verilog" enable="1"/>
+        <File path="C:/Workspace/FPGA/ttsky25a-tinyQV-fjpolo-rv2a03/src/tinyQV/cpu/counter.v" type="file.verilog" enable="1"/>
+        <File path="C:/Workspace/FPGA/ttsky25a-tinyQV-fjpolo-rv2a03/src/tinyQV/cpu/cpu.v" type="file.verilog" enable="1"/>
+        <File path="C:/Workspace/FPGA/ttsky25a-tinyQV-fjpolo-rv2a03/src/tinyQV/cpu/decode.v" type="file.verilog" enable="1"/>
+        <File path="C:/Workspace/FPGA/ttsky25a-tinyQV-fjpolo-rv2a03/src/tinyQV/cpu/latch_reg.v" type="file.verilog" enable="1"/>
+        <File path="C:/Workspace/FPGA/ttsky25a-tinyQV-fjpolo-rv2a03/src/tinyQV/cpu/mem_ctrl.v" type="file.verilog" enable="1"/>
+        <File path="C:/Workspace/FPGA/ttsky25a-tinyQV-fjpolo-rv2a03/src/tinyQV/cpu/qspi_ctrl.v" type="file.verilog" enable="1"/>
+        <File path="C:/Workspace/FPGA/ttsky25a-tinyQV-fjpolo-rv2a03/src/tinyQV/cpu/qspi_flash.v" type="file.verilog" enable="1"/>
+        <File path="C:/Workspace/FPGA/ttsky25a-tinyQV-fjpolo-rv2a03/src/tinyQV/cpu/register.v" type="file.verilog" enable="1"/>
+        <File path="C:/Workspace/FPGA/ttsky25a-tinyQV-fjpolo-rv2a03/src/tinyQV/cpu/time.v" type="file.verilog" enable="1"/>
+        <File path="C:/Workspace/FPGA/ttsky25a-tinyQV-fjpolo-rv2a03/src/tinyQV/cpu/tinyqv.v" type="file.verilog" enable="1"/>
+        <File path="C:/Workspace/FPGA/ttsky25a-tinyQV-fjpolo-rv2a03/src/tinyQV/peri/uart/uart_rx.v" type="file.verilog" enable="1"/>
+        <File path="C:/Workspace/FPGA/ttsky25a-tinyQV-fjpolo-rv2a03/src/tinyQV/peri/uart/uart_tx.v" type="file.verilog" enable="1"/>
+        <File path="C:/Workspace/FPGA/ttsky25a-tinyQV-fjpolo-rv2a03/src/user_peripherals/uart/peri_uart.v" type="file.verilog" enable="1"/>
+        <File path="C:/Workspace/FPGA/ttsky25a-tinyQV-fjpolo-rv2a03/src/user_peripherals/uart/uart_rx.v" type="file.verilog" enable="1"/>
+        <File path="C:/Workspace/FPGA/ttsky25a-tinyQV-fjpolo-rv2a03/src/user_peripherals/uart/uart_tx.v" type="file.verilog" enable="1"/>
+        <File path="nano20k.cst" type="file.cst" enable="1"/>
+        <File path="C:/Workspace/FPGA/ttsky25a-tinyQV-fjpolo-rv2a03/fpga/generic/ledstrip.hex" type="file.other" enable="1"/>
+        <File path="C:/Workspace/FPGA/ttsky25a-tinyQV-fjpolo-rv2a03/src/tinyQV/cpu/lint.sh" type="file.other" enable="1"/>
+    </FileList>
+</Project>

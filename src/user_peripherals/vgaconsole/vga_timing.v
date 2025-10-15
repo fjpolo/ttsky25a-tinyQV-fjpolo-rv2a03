@@ -1,4 +1,4 @@
-`default_nettype none
+// `default_nettype none
 
 // courtesy of htfab, https://github.com/htfab/tinyqv-baby-vga
 // (modified to save gates and remove interrupt code)

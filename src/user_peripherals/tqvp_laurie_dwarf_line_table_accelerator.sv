@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-`default_nettype none
+// `default_nettype none
 
 module tqvp_laurie_dwarf_line_table_accelerator(
     // Clock and reset.

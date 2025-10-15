@@ -1,4 +1,4 @@
-`default_nettype none
+// `default_nettype none
 
 `define NUM_REGS 16
 `define ADDR_BITS 4

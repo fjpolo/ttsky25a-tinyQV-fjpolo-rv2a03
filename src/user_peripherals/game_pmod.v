@@ -6,7 +6,7 @@
  * Copyright (c) 2025 Pat Deegan, https://psychogenic.com
  */
 
-`default_nettype none
+// `default_nettype none
 
 /**
  * gamepad_pmod_driver -- Serial interface for the Gamepad Pmod.

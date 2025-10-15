@@ -30,9 +30,9 @@ module sim_qspi_pmod (
 
     wire any_select = qspi_flash_select && qspi_ram_a_select && qspi_ram_b_select;
 
-    reg [7:0] rom [0:(1 << ROM_BITS)-1];
-    reg [7:0] ram_a [0:(1 << RAM_BITS)-1];
-    reg [7:0] ram_b [0:(1 << RAM_BITS)-1];
+    reg [7:0] rom [0:(1 << ROM_BITS)-1] /*synthesis syn_ramstyle="block_ram"*/;
+    reg [7:0] ram_a [0:(1 << RAM_BITS)-1] /*synthesis syn_ramstyle="block_ram"*/;
+    reg [7:0] ram_b [0:(1 << RAM_BITS)-1] /*synthesis syn_ramstyle="block_ram"*/;
 
     parameter INIT_FILE = "";
     initial begin

@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-`default_nettype none
+// `default_nettype none
 `include "pwl_synth.vh"
 
 `ifdef USE_LATCHES

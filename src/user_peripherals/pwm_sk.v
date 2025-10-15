@@ -2,7 +2,7 @@
  * Copyright (c) 2025 Sujith Kani
  * SPDX-License-Identifier: Apache-2.0
  */
-`default_nettype none
+// `default_nettype none
 module tqvp_pwm_sujith(
     input clk, rst_n,
     input [7:0] ui_in,

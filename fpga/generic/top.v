@@ -3,15 +3,21 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-`default_nettype none
+//// `default_nettype none
 
 module tinyQV_top (
         input clk,
         input rst_n,
-
-        input [7:0] ui_in,
-        output [7:0] uo_out
-
+        // UART
+        input UART_RXD,
+        output UART_TXD,
+        // SPI flash
+        output flash_spi_cs_n,          // chip select
+        input flash_spi_miso,           // master in slave out
+        output flash_spi_mosi,          // mster out slave in
+        output flash_spi_clk,           // spi clock
+        output flash_spi_wp_n,          // write protect
+        output flash_spi_hold_n         // hold operations
 );
     localparam CLOCK_MHZ = 14;
 
@@ -22,6 +28,11 @@ module tinyQV_top (
     localparam PERI_DEBUG_UART_STATUS = 4'h7;
     localparam PERI_DEBUG = 4'hC;
     localparam PERI_USER = 4'hF;
+
+    // Input
+    reg [7:0] ui_in;
+    // Outputs
+    reg [7:0] uo_out;
 
     // Register the reset on the negative edge of clock for safety.
     // This also allows the option of async reset in the design, which might be preferable in some cases
@@ -39,7 +50,7 @@ module tinyQV_top (
     wire       qspi_ram_a_select;
     wire       qspi_ram_b_select;
 
-    sim_qspi_pmod i_qspi (
+    sim_qspi i_qspi (
         .qspi_data_in(qspi_data_out & qspi_data_oe),
         .qspi_data_out(qspi_data_in),
         .qspi_clk(qspi_clk_out),
