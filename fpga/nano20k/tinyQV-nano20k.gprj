@@ -33,6 +33,7 @@
         <File path="C:/Workspace/FPGA/ttsky25a-tinyQV-fjpolo-rv2a03/src/user_peripherals/uart/uart_rx.v" type="file.verilog" enable="1"/>
         <File path="C:/Workspace/FPGA/ttsky25a-tinyQV-fjpolo-rv2a03/src/user_peripherals/uart/uart_tx.v" type="file.verilog" enable="1"/>
         <File path="nano20k.cst" type="file.cst" enable="1"/>
+        <File path="nano20k.sdc" type="file.sdc" enable="1"/>
         <File path="C:/Workspace/FPGA/ttsky25a-tinyQV-fjpolo-rv2a03/fpga/generic/ledstrip.hex" type="file.other" enable="1"/>
         <File path="C:/Workspace/FPGA/ttsky25a-tinyQV-fjpolo-rv2a03/src/tinyQV/cpu/lint.sh" type="file.other" enable="1"/>
     </FileList>
