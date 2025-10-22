@@ -9,6 +9,7 @@
         <File path="C:/Workspace/FPGA/ttsky25a-tinyQV-fjpolo-rv2a03/fpga/generic/peripherals.v" type="file.verilog" enable="1"/>
         <File path="C:/Workspace/FPGA/ttsky25a-tinyQV-fjpolo-rv2a03/fpga/generic/sim_qspi.v" type="file.verilog" enable="1"/>
         <File path="C:/Workspace/FPGA/ttsky25a-tinyQV-fjpolo-rv2a03/fpga/generic/top.v" type="file.verilog" enable="1"/>
+        <File path="src/nano20k_top.sv.v" type="file.verilog" enable="1"/>
         <File path="C:/Workspace/FPGA/ttsky25a-tinyQV-fjpolo-rv2a03/src/latch_mem.v" type="file.verilog" enable="1"/>
         <File path="C:/Workspace/FPGA/ttsky25a-tinyQV-fjpolo-rv2a03/src/peri_byte_empty.v" type="file.verilog" enable="1"/>
         <File path="C:/Workspace/FPGA/ttsky25a-tinyQV-fjpolo-rv2a03/src/peri_byte_example.v" type="file.verilog" enable="1"/>

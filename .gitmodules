@@ -1,3 +1,6 @@
-[submodule "src/tinyQV"]
-	path = src/tinyQV
-	url = https://github.com/MichaelBell/tinyQV.git
+[submodule "firmware/projects"]
+	path = firmware/projects
+	url = https://github.com/MichaelBell/tinyQV-projects
+[submodule "firmware/SDK"]
+	path = firmware/SDK
+	url = https://github.com/MichaelBell/tinyQV-projects
