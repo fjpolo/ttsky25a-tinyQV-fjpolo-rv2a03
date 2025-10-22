@@ -31,7 +31,7 @@ module sim_qspi (
     initial begin
         // CRITICAL: Ensure 'program.hex' is your byte-per-line Risc-V program output
         // and is placed in the project root directory where the compiler can find it.
-        $readmemh("hello.hex", rom_mem);
+        $readmemh("program.hex", rom_mem);
         
         // Note: For simulation, you might want to initialize RAM to known values.
         // For FPGA implementation, RAM is usually initialized in the linker script (by .bss and .data copy).

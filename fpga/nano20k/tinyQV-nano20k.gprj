@@ -31,13 +31,15 @@
         <File path="C:/Workspace/FPGA/ttsky25a-tinyQV-fjpolo-rv2a03/src/tinyQV/cpu/tinyqv.v" type="file.verilog" enable="1"/>
         <File path="C:/Workspace/FPGA/ttsky25a-tinyQV-fjpolo-rv2a03/src/tinyQV/peri/uart/uart_rx.v" type="file.verilog" enable="1"/>
         <File path="C:/Workspace/FPGA/ttsky25a-tinyQV-fjpolo-rv2a03/src/tinyQV/peri/uart/uart_tx.v" type="file.verilog" enable="1"/>
+        <File path="C:/Workspace/FPGA/ttsky25a-tinyQV-fjpolo-rv2a03/src/user_peripherals/RV2A03/apu.v" type="file.verilog" enable="1"/>
+        <File path="C:/Workspace/FPGA/ttsky25a-tinyQV-fjpolo-rv2a03/src/user_peripherals/RV2A03/peripheral.v" type="file.verilog" enable="1"/>
         <File path="C:/Workspace/FPGA/ttsky25a-tinyQV-fjpolo-rv2a03/src/user_peripherals/uart/peri_uart.v" type="file.verilog" enable="1"/>
         <File path="C:/Workspace/FPGA/ttsky25a-tinyQV-fjpolo-rv2a03/src/user_peripherals/uart/uart_rx.v" type="file.verilog" enable="1"/>
         <File path="C:/Workspace/FPGA/ttsky25a-tinyQV-fjpolo-rv2a03/src/user_peripherals/uart/uart_tx.v" type="file.verilog" enable="1"/>
         <File path="nano20k.cst" type="file.cst" enable="1"/>
         <File path="nano20k.sdc" type="file.sdc" enable="1"/>
         <File path="src/tinyQV-nano20k.rao" type="file.gao" enable="0"/>
-        <File path="src/tinyQV-nano20k__uart.rao" type="file.gao" enable="1"/>
-        <File path="hello.hex" type="file.other" enable="1"/>
+        <File path="src/tinyQV-nano20k__rv2a03.rao" type="file.gao" enable="1"/>
+        <File path="src/tinyQV-nano20k__uart.rao" type="file.gao" enable="0"/>
     </FileList>
 </Project>

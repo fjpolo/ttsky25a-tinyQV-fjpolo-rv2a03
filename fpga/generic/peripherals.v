@@ -189,8 +189,8 @@ module tinyQV_peripherals #(parameter CLOCK_MHZ=64) (
 
     // --------------------------------------------------------------------- //
     // Full interface peripherals
-
-    tqvp_full_empty i_user_peri04(
+    // Registers start at 0x800_0200
+    tqvp_fjpolo_rv2a03 i_user_peri04(
         .clk(clk),
         .rst_n(rst_n),
 
