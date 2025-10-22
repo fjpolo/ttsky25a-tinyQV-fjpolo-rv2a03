@@ -2,45 +2,45 @@
  * Copyright (c) 2025 @fjpolo
  * SPDX-License-Identifier: Apache-2.0
  */
- // IO
- //
- // The TinyQV project uses a PMOD connector for input and output.
- // The PMOD connector has 8 pins, which are used as follows:
- //   - ui_in[0] to ui_in[7]: Input PMOD, always available. Note that ui_in[7] is normally used for UART RX.
- //     The inputs are synchronized to the clock, note this will introduce 2 cycles of delay on the inputs.
- //   - uo_out[0] to uo_out[7]: Output PMOD, only connected if this peripheral is selected.
- //     ⚠ Note that uo_out[0] is normally used for UART TX.
- //       +uo_out[1]: apu_IRQ
- //       +uo_out[2]: apu_o_ce
+// IO
+//
+// The TinyQV project uses a PMOD connector for input and output.
+// The PMOD connector has 8 pins, which are used as follows:
+//  - ui_in[0] to ui_in[7]: Input PMOD, always available. Note that ui_in[7] is normally used for UART RX.
+//    The inputs are synchronized to the clock, note this will introduce 2 cycles of delay on the inputs.
+//  - uo_out[0] to uo_out[7]: Output PMOD, only connected if this peripheral is selected.
+//    ⚠ Note that uo_out[0] is normally used for UART TX.
+//    +uo_out[1]: apu_IRQ
+//    +uo_out[2]: apu_o_ce
 
- // Memory Mapped Registers
- //
- //    0x00 - Example Register - Read/Write
- //    0x01 - 0x0F - APU Register Direct Access (Pass-through for NES APU registers 0x4001-0x400F) - Read/Write
- //
- //    0x20 - Configuration0 - Read/Write
- //       | b7 | b6 | b5 | b4 | b3 |    b2    | b1 | b0 |
- //       |    |    |    |    |    | isMMC5   | US | CE |
- //
- //    0x22 - Status0 - Read
- //       | b7 |         b6        |       b5          |        b4         |          b3        |        b2          | b1  |         b0        |
- //       |    |  Audio Channel[4] |  Audio Channel[3] |  Audio Channel[2] |  Audio Channel[1]  |  Audio Channel[0]  | IRQ | Data Output Ready |
- //
- //    0x23 - Data Input - Write/Read (Data to be written to APU's DIN port for commands/writes)
- //
- //    0x24 - Data Output MSB - Read (MSB of APU Sample)
- //
- //    0x25 - Data Output LSB - Read (LSB of APU Sample)
- //
- //    APU internal registers (0x4000-0x401F):
- //      Accessed via peripheral addresses 0x01-0x0F for direct read/write,
- //      or indirectly via 0x23 write for specific commands, and 0x24/0x25 read for audio sample.
+// Memory Mapped Registers
+//
+//  	0x00 - Example Register - Read/Write
+//  	0x01 - 0x0F - APU Register Direct Access (Pass-through for NES APU registers 0x4001-0x400F) - Read/Write
+//
+//  	0x20 - Configuration0 - Read/Write
+//  	 	| b7 | b6 | b5 | b4 | b3 |    b2    | b1 | b0 |
+//  	 	|    |    |    |    |    | isMMC5   | US | CE |
+//
+//  	0x22 - Status0 - Read
+//  	 	| b7 |         b6        |       b5          |        b4         |          b3        |        b2          | b1  |         b0        |
+//  	 	|    |  Audio Channel[4] |  Audio Channel[3] |  Audio Channel[2] |  Audio Channel[1]  |  Audio Channel[0]  | IRQ | Data Output Ready |
+//
+//  	0x23 - Data Input - Write/Read (Data to be written to APU's DIN port for commands/writes)
+//
+//  	0x24 - Data Output MSB - Read (MSB of APU Sample)
+//
+//  	0x25 - Data Output LSB - Read (LSB of APU Sample)
+//
+//  	APU internal registers (0x4000-0x401F):
+//  	 	Accessed via peripheral addresses 0x01-0x0F for direct read/write,
+//  	 	or indirectly via 0x23 write for specific commands, and 0x24/0x25 read for audio sample.
 
-//`default_nettype none
+// `default_nettype none
 
 module tqvp_fjpolo_rv2a03 (
-    input        clk,           // Clock - the TinyQV project clock is normally set to 64MHz.
-    input        rst_n,         // Reset_n - low to reset.
+    input          clk,           // Clock - the TinyQV project clock is normally set to 64MHz.
+    input          rst_n,         // Reset_n - low to reset.
 
     input  [7:0] ui_in,         // The input PMOD, always available. Note that ui_in[7] is normally used for UART RX.
     output [7:0] uo_out,        // The output PMOD. Each wire is only connected if this peripheral is selected.
@@ -51,7 +51,7 @@ module tqvp_fjpolo_rv2a03 (
     input  [1:0] data_write_n,  // 11 = no write, 00 = 8-bits, 01 = 16-bits, 10 = 32-bits
     input  [1:0] data_read_n,   // 11 = no read, 00 = 8-bits, 01 = 16-bits, 10 = 32-bits
     
-    output [31:0] data_out,      // Data out from the peripheral
+    output [31:0] data_out,     // Data out from the peripheral
     output        data_ready,
 
     output        user_interrupt // Dedicated interrupt request for this peripheral
@@ -73,14 +73,14 @@ module tqvp_fjpolo_rv2a03 (
     reg [7:0] reg_data_output_lsb;
     reg [7:0] reg_status0;
 
-    initial reg_configuration0 = 8'h00;      
-    initial reg_data_input = 8'h00;          
+    initial reg_configuration0 = 8'h00;       
+    initial reg_data_input = 8'h00;           
     initial reg_data_output_msb = 8'hFF;     
     initial reg_data_output_lsb = 8'h00;     
     initial reg_status0 = 8'h00;             
 
     wire apu_us = reg_configuration0[1];
-    wire apu_is_mmc5 = reg_configuration0[2];          // New bit for isMMC5
+    wire apu_is_mmc5 = reg_configuration0[2];             // New bit for isMMC5
     
     wire [15:0] apu_output_sample_16b;
     
@@ -109,7 +109,58 @@ module tqvp_fjpolo_rv2a03 (
     // This is the new clock enable signal for the APU module.
     wire apu_phi2_ce = apu_phi2_clk;
 
-    wire apu_cs = (address >= 'h00)&&(address < APU_FRAME_COUNTER_REG_ADDRESS);
+    // apu_cs is based on the current bus address.
+    wire apu_cs_undelayed = (address >= 'h00) && (address < APU_FRAME_COUNTER_REG_ADDRESS);
+
+    // This register holds the data for synchronous writes and handles byte selection.
+    // It introduces the necessary 1-cycle delay relative to the rising edge of the clock 
+    // where data_write_n is asserted.
+    reg [31:0] r_data_in;
+    initial r_data_in = 'h00;
+    always @(posedge clk) begin
+        case(data_write_n)
+            2'b00: r_data_in[7:0] <= data_in[7:0];
+            2'b01: r_data_in[15:0] <= data_in[15:0];
+            2'b10: r_data_in <= data_in;
+            default: r_data_in <= r_data_in;
+        endcase
+    end
+    
+    // *** NEW: Delayed Write Enable Signal ***
+    // This signal latches the write request for one cycle, aligning it with r_data_in.
+    reg write_enable_d;
+    initial write_enable_d = 1'b0;
+    
+    always @(posedge clk) begin
+        write_enable_d <= (data_write_n != 2'b11);
+    end
+    // ----------------------------------------
+
+    // --- APU Interface Signal Synchronization ---
+    reg [4:0] apu_addr_d;
+    reg [7:0] apu_din_d;
+    reg apu_cs_d;
+    reg apu_rw_d;
+
+    // apu_rw is R=1, W=0. 
+    wire apu_wr_signal_RVdomain = (data_write_n != 2'b11);
+    wire apu_rw_undelayed = (~apu_wr_signal_RVdomain);
+
+    always @(posedge clk) begin
+        if (!rst_n) begin
+            apu_addr_d <= 5'h00;
+            apu_din_d  <= 8'h00;
+            apu_cs_d   <= 1'b0;
+            apu_rw_d   <= 1'b1; // Default to Read
+        end else begin
+            // Latch the current cycle's bus state for use in the next cycle.
+            apu_addr_d <= address[4:0];
+            apu_din_d  <= data_in[7:0];
+            apu_cs_d   <= apu_cs_undelayed;
+            apu_rw_d   <= apu_rw_undelayed;
+        end
+    end
+    // --- End of APU Interface Delay ---
 
     always @(posedge clk) begin
         if (!rst_n) begin
@@ -126,16 +177,8 @@ module tqvp_fjpolo_rv2a03 (
                 odd_or_even <= ~odd_or_even;
         end
     end
-
-    wire apu_wr_signal_RVdomain = (data_write_n == 2'b10) ? 1'b1 :     
-                                  (data_write_n == 2'b01) ? 1'b1 :     
-                                  (data_write_n == 2'b00) ? 1'b1 :     
-                                  1'b0;                                      
-
-    wire apu_rw = (apu_wr_signal_RVdomain) ? 1'b0 : 1'b1;
     
-    // The APU module should be modified to take a clock enable,
-    // rather than the derived clock signal.
+    // The APU module is driven by the delayed signals.
     APU i_apu(
         .MMC5(apu_is_mmc5),
         .clk(clk),
@@ -144,10 +187,10 @@ module tqvp_fjpolo_rv2a03 (
         .reset(~rst_n),
         .cold_reset(~rst_n),
         .allow_us(apu_us),
-        .ADDR(address[4:0]),
-        .DIN(data_in[7:0]),
-        .RW(apu_rw), 
-        .CS(apu_cs),
+        .ADDR(apu_addr_d), 
+        .DIN(apu_din_d),   
+        .RW(apu_rw_d),     
+        .CS(apu_cs_d),     
         .odd_or_even(odd_or_even),
         .DOUT(apu_dout),
         .Sample(apu_output_sample_16b),
@@ -169,26 +212,28 @@ module tqvp_fjpolo_rv2a03 (
     assign uo_out[0]   = ui_in[0];
     assign uo_out[1]   = apu_IRQ;
     assign uo_out[2]   = apu_o_ce;
-    assign uo_out[7:3] = ui_in[7:3];                
+    assign uo_out[7:3] = ui_in[7:3];              
     
+    // *** FIX APPLIED: Using write_enable_d to synchronize the control signal ***
     always @(posedge clk) begin
         if (!rst_n) begin
             reg_configuration0 <= 0;
         end else begin
             if (address == CONFIGURATION0_REG_ADDR[5:0]) begin
-                if (data_write_n != 2'b11)
+                if (write_enable_d) // Check delayed write enable
                     reg_configuration0 <= data_in[7:0];
             end
         end
     end
 
+    // *** FIX APPLIED: Using write_enable_d to synchronize the control signal ***
     always @(posedge clk) begin
         if (!rst_n) begin
             reg_data_input <= 0;
         end else begin
             if (address == DATA_INPUT_REG_ADDR) begin
-                if (data_write_n != 2'b11)
-                    reg_data_input <= data_in[7:0];
+                if (write_enable_d) // Check delayed write enable
+                    reg_data_input <= data_in[7:0]; 
             end
         end
     end
@@ -196,12 +241,12 @@ module tqvp_fjpolo_rv2a03 (
     logic [31:0] data_out_reg;
     always_comb begin
         case (address)
-            CONFIGURATION0_REG_ADDR: data_out_reg           = {24'h0, reg_configuration0};
-            STATUS1_REG_ADDR: data_out_reg                  = {24'h0, reg_status0};
-            DATA_INPUT_REG_ADDR: data_out_reg               = {24'h0, reg_data_input};
-            DATA_OUTPUT_MSB_REG_ADDR: data_out_reg          = {24'h0, reg_data_output_msb};
-            DATA_OUTPUT_LSB_REG_ADDR: data_out_reg          = {24'h0, reg_data_output_lsb};
-            APU_STATUS_REG_ADDRESS: data_out_reg            = {24'h0, apu_dout};
+            CONFIGURATION0_REG_ADDR: data_out_reg          = {24'h0, reg_configuration0};
+            STATUS1_REG_ADDR: data_out_reg                = {24'h0, reg_status0};
+            DATA_INPUT_REG_ADDR: data_out_reg              = {24'h0, reg_data_input};
+            DATA_OUTPUT_MSB_REG_ADDR: data_out_reg        = {24'h0, reg_data_output_msb};
+            DATA_OUTPUT_LSB_REG_ADDR: data_out_reg        = {24'h0, reg_data_output_lsb};
+            APU_STATUS_REG_ADDRESS: data_out_reg          = {24'h0, apu_dout};
             default: data_out_reg = 32'h0; // All other addresses return 0
         endcase
     end
@@ -210,6 +255,6 @@ module tqvp_fjpolo_rv2a03 (
     assign data_ready = 1;
     assign user_interrupt = 'h0;
 
-    wire _unused = &{data_read_n, data_ready, data_in[31:8], ui_in[1], ui_in[1], 1'b0};
+    wire _unused = &{data_read_n, data_ready, data_in[31:8], ui_in[1], 1'b0};
 
 endmodule
