@@ -1,0 +1,17 @@
+<?xml version="1" encoding="UTF-8"?>
+<GAO_CONFIG>
+    <Version>3.0</Version>
+    <Mode>Lite</Mode>
+    <AoCore_Lite index="0" sample_clock="sys_clk" trig_type="0" capture_amount="1024" implemention="0" input_register_enabled="1" capture_init_data_enabled="1" module_name="nano20k_top">
+        <SignalList>
+            <Signal capture_enable="true">sys_reset</Signal>
+            <Bus capture_enable="true" name="led[5:0]">
+                <Signal>led[1]</Signal>
+                <Signal>led[0]</Signal>
+            </Bus>
+            <Signal capture_enable="true">UART_RXD</Signal>
+            <Signal capture_enable="true">UART_TXD</Signal>
+        </SignalList>
+    </AoCore_Lite>
+    <GAO_ID>1101001011001001</GAO_ID>
+</GAO_CONFIG>

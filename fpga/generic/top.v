@@ -3,21 +3,17 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-//// `default_nettype none
+// `default_nettype none
 
 module tinyQV_top (
         input clk,
         input rst_n,
-        // UART
-        input UART_RXD,
-        output UART_TXD,
-        // SPI flash
-        output flash_spi_cs_n,          // chip select
-        input flash_spi_miso,           // master in slave out
-        output flash_spi_mosi,          // mster out slave in
-        output flash_spi_clk,           // spi clock
-        output flash_spi_wp_n,          // write protect
-        output flash_spi_hold_n         // hold operations
+
+        input [7:0] ui_in,
+        output [7:0] uo_out,
+        output o_uart_tx,
+        input  i_uart_rx
+
 );
     localparam CLOCK_MHZ = 27;
 
@@ -28,11 +24,6 @@ module tinyQV_top (
     localparam PERI_DEBUG_UART_STATUS = 4'h7;
     localparam PERI_DEBUG = 4'hC;
     localparam PERI_USER = 4'hF;
-
-    // Input
-    reg [7:0] ui_in;
-    // Outputs
-    reg [7:0] uo_out;
 
     // Register the reset on the negative edge of clock for safety.
     // This also allows the option of async reset in the design, which might be preferable in some cases
@@ -88,8 +79,7 @@ module tinyQV_top (
     wire       debug_uart_txd;
     wire       debug_signal;
     reg  [7:6] gpio_out_sel;
-
-    assign UART_TXD = debug_uart_txd;
+    assign o_uart_tx = debug_uart_txd;
 
     reg [3:0] connect_peripheral;
 
@@ -223,7 +213,7 @@ module tinyQV_top (
         end
     end
 
-    uart_tx #(.CLK_HZ(CLOCK_MHZ*1_000_000), .BIT_RATE(1_000_000)) i_debug_uart_tx(
+    uart_tx #(.CLK_HZ(CLOCK_MHZ*1_000_000), .BIT_RATE(9600)) i_debug_uart_tx(
         .clk(clk),
         .resetn(rst_reg_n),
         .uart_txd(debug_uart_txd),

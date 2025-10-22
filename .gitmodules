@@ -4,3 +4,7 @@
 [submodule "firmware/SDK"]
 	path = firmware/SDK
 	url = https://github.com/MichaelBell/tinyQV-projects
+[submodule "firmware/tinyQV-sdk"]
+	path = firmware/tinyQV-sdk
+	url = https://github.com/MichaelBell/tinyQV-sdk/
+	branch = ttsky25a

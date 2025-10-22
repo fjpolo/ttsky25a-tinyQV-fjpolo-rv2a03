@@ -15,10 +15,10 @@ module sim_qspi (
 
     // --- CONFIGURATION PARAMETERS ---
     // ROM and RAM size in bytes is 1 << XXX_BITS.
-    // 32KB ROM (2^15) and 8KB RAMs (2^13)
-    localparam   ROM_BITS       = 15; 
-    localparam   RAM_A_BITS     = 13;
-    localparam   RAM_B_BITS     = 13;
+    // 2KB ROM (2^11) and 1KB RAMs (2^10)
+    localparam   ROM_BITS       = 11; 
+    localparam   RAM_A_BITS     = 10;
+    localparam   RAM_B_BITS     = 10;
 
     // --- BRAM INFERENCE AND INITIALIZATION ---
     // These large arrays will be inferred as BRAM by the Gowin toolchain.
@@ -31,7 +31,7 @@ module sim_qspi (
     initial begin
         // CRITICAL: Ensure 'program.hex' is your byte-per-line Risc-V program output
         // and is placed in the project root directory where the compiler can find it.
-        $readmemh("program.hex", rom_mem);
+        $readmemh("hello.hex", rom_mem);
         
         // Note: For simulation, you might want to initialize RAM to known values.
         // For FPGA implementation, RAM is usually initialized in the linker script (by .bss and .data copy).
