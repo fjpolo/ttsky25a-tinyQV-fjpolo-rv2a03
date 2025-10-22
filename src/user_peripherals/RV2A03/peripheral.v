@@ -136,7 +136,7 @@ module tqvp_fjpolo_rv2a03 (
     
     // The APU module should be modified to take a clock enable,
     // rather than the derived clock signal.
-    APU apu(
+    APU i_apu(
         .MMC5(apu_is_mmc5),
         .clk(clk),
         .PHI2(apu_phi2_ce), // Pass the clock enable to PHI2

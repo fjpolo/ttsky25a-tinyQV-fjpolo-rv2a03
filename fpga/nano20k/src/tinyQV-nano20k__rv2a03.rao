@@ -2,9 +2,12 @@
 <GAO_CONFIG>
     <Version>3.0</Version>
     <Mode>Lite</Mode>
-    <AoCore_Lite index="0" sample_clock="sys_clk" trig_type="0" capture_amount="4096" implemention="0" input_register_enabled="0" capture_init_data_enabled="0" module_name="nano20k_top">
+    <AoCore_Lite index="0" sample_clock="sys_clk" trig_type="0" capture_amount="4096" implemention="0" input_register_enabled="1" capture_init_data_enabled="1" module_name="nano20k_top">
         <SignalList>
             <Signal capture_enable="true">sys_reset_n</Signal>
+            <Signal capture_enable="true">i_tiniyQV/i_peripherals/rst_n</Signal>
+            <Signal capture_enable="true">i_tiniyQV/i_peripherals/i_user_peri04/rst_n</Signal>
+            <Signal capture_enable="true">i_tiniyQV/i_peripherals/i_user_peri04/i_apu/reset</Signal>
             <Bus capture_enable="true" name="i_tiniyQV/i_peripherals/i_user_peri04/reg_configuration0[7:0]">
                 <Signal>i_tiniyQV/i_peripherals/i_user_peri04/reg_configuration0[7]</Signal>
                 <Signal>i_tiniyQV/i_peripherals/i_user_peri04/reg_configuration0[6]</Signal>
@@ -14,6 +17,16 @@
                 <Signal>i_tiniyQV/i_peripherals/i_user_peri04/reg_configuration0[2]</Signal>
                 <Signal>i_tiniyQV/i_peripherals/i_user_peri04/reg_configuration0[1]</Signal>
                 <Signal>i_tiniyQV/i_peripherals/i_user_peri04/reg_configuration0[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="i_tiniyQV/i_peripherals/i_user_peri04/reg_status0[7:0]">
+                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/reg_status0[7]</Signal>
+                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/reg_status0[6]</Signal>
+                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/reg_status0[5]</Signal>
+                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/reg_status0[4]</Signal>
+                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/reg_status0[3]</Signal>
+                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/reg_status0[2]</Signal>
+                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/reg_status0[1]</Signal>
+                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/reg_status0[0]</Signal>
             </Bus>
             <Bus capture_enable="true" name="i_tiniyQV/i_peripherals/i_user_peri04/reg_data_input[7:0]">
                 <Signal>i_tiniyQV/i_peripherals/i_user_peri04/reg_data_input[7]</Signal>
@@ -45,17 +58,90 @@
                 <Signal>i_tiniyQV/i_peripherals/i_user_peri04/reg_data_output_lsb[1]</Signal>
                 <Signal>i_tiniyQV/i_peripherals/i_user_peri04/reg_data_output_lsb[0]</Signal>
             </Bus>
-            <Bus capture_enable="true" name="i_tiniyQV/i_peripherals/i_user_peri04/reg_status0[7:0]">
-                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/reg_status0[7]</Signal>
-                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/reg_status0[6]</Signal>
-                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/reg_status0[5]</Signal>
-                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/reg_status0[4]</Signal>
-                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/reg_status0[3]</Signal>
-                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/reg_status0[2]</Signal>
-                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/reg_status0[1]</Signal>
-                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/reg_status0[0]</Signal>
+            <Bus capture_enable="true" name="i_tiniyQV/i_peripherals/i_user_peri04/address[5:0]">
+                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/address[5]</Signal>
+                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/address[4]</Signal>
+                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/address[3]</Signal>
+                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/address[2]</Signal>
+                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/address[1]</Signal>
+                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/address[0]</Signal>
             </Bus>
+            <Bus capture_enable="true" name="i_tiniyQV/write_n[1:0]">
+                <Signal>i_tiniyQV/write_n[1]</Signal>
+                <Signal>i_tiniyQV/write_n[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="i_tiniyQV/i_tinyqv/data_write_n[1:0]">
+                <Signal>i_tiniyQV/i_tinyqv/data_write_n[1]</Signal>
+                <Signal>i_tiniyQV/i_tinyqv/data_write_n[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="i_tiniyQV/i_tinyqv/cpu/data_write_n[1:0]">
+                <Signal>i_tiniyQV/i_tinyqv/cpu/data_write_n[1]</Signal>
+                <Signal>i_tiniyQV/i_tinyqv/cpu/data_write_n[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="i_tiniyQV/i_peripherals/i_user_peri04/data_write_n[1:0]">
+                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/data_write_n[1]</Signal>
+                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/data_write_n[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="i_tiniyQV/i_peripherals/i_user_peri04/data_in[31:0]">
+                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/data_in[31]</Signal>
+                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/data_in[30]</Signal>
+                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/data_in[29]</Signal>
+                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/data_in[28]</Signal>
+                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/data_in[27]</Signal>
+                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/data_in[26]</Signal>
+                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/data_in[25]</Signal>
+                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/data_in[24]</Signal>
+                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/data_in[23]</Signal>
+                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/data_in[22]</Signal>
+                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/data_in[21]</Signal>
+                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/data_in[20]</Signal>
+                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/data_in[19]</Signal>
+                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/data_in[18]</Signal>
+                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/data_in[17]</Signal>
+                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/data_in[16]</Signal>
+                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/data_in[15]</Signal>
+                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/data_in[14]</Signal>
+                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/data_in[13]</Signal>
+                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/data_in[12]</Signal>
+                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/data_in[11]</Signal>
+                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/data_in[10]</Signal>
+                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/data_in[9]</Signal>
+                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/data_in[8]</Signal>
+                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/data_in[7]</Signal>
+                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/data_in[6]</Signal>
+                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/data_in[5]</Signal>
+                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/data_in[4]</Signal>
+                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/data_in[3]</Signal>
+                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/data_in[2]</Signal>
+                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/data_in[1]</Signal>
+                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/data_in[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="i_tiniyQV/i_peripherals/i_user_peri04/i_apu/ADDR[4:0]">
+                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/i_apu/ADDR[4]</Signal>
+                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/i_apu/ADDR[3]</Signal>
+                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/i_apu/ADDR[2]</Signal>
+                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/i_apu/ADDR[1]</Signal>
+                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/i_apu/ADDR[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="i_tiniyQV/i_peripherals/i_user_peri04/i_apu/Enabled[3:0]">
+                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/i_apu/Enabled[3]</Signal>
+                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/i_apu/Enabled[2]</Signal>
+                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/i_apu/Enabled[1]</Signal>
+                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/i_apu/Enabled[0]</Signal>
+            </Bus>
+            <Bus capture_enable="true" name="i_tiniyQV/i_peripherals/i_user_peri04/i_apu/enabled_buffer[3:0]">
+                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/i_apu/enabled_buffer[3]</Signal>
+                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/i_apu/enabled_buffer[2]</Signal>
+                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/i_apu/enabled_buffer[1]</Signal>
+                <Signal>i_tiniyQV/i_peripherals/i_user_peri04/i_apu/enabled_buffer[0]</Signal>
+            </Bus>
+            <Signal capture_enable="true">i_tiniyQV/i_peripherals/i_user_peri04/apu_phi2_ce</Signal>
+            <Signal capture_enable="true">i_tiniyQV/i_peripherals/i_user_peri04/apu_ce</Signal>
+            <Signal capture_enable="true">i_tiniyQV/debug_instr_complete</Signal>
+            <Signal capture_enable="true">i_tiniyQV/debug_instr_valid</Signal>
+            <Signal capture_enable="true">i_tiniyQV/debug_branch</Signal>
+            <Signal capture_enable="true">i_tiniyQV/debug_interrupt_pending</Signal>
         </SignalList>
     </AoCore_Lite>
-    <GAO_ID>0110010110100101</GAO_ID>
+    <GAO_ID>0110100110110010</GAO_ID>
 </GAO_CONFIG>
