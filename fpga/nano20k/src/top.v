@@ -3,17 +3,19 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-`default_nettype none
+// `default_nettype none
 
 module tinyQV_top (
         input clk,
         input rst_n,
 
         input [7:0] ui_in,
-        output [7:0] uo_out
+        output [7:0] uo_out,
+        output o_uart_tx,
+        input  i_uart_rx
 
 );
-    localparam CLOCK_MHZ = 14;
+    localparam CLOCK_MHZ = 27;
 
     // Address to peripheral map
     localparam PERI_NONE = 4'h0;
@@ -39,7 +41,7 @@ module tinyQV_top (
     wire       qspi_ram_a_select;
     wire       qspi_ram_b_select;
 
-    sim_qspi_pmod i_qspi (
+    sim_qspi i_qspi (
         .qspi_data_in(qspi_data_out & qspi_data_oe),
         .qspi_data_out(qspi_data_in),
         .qspi_clk(qspi_clk_out),
@@ -77,6 +79,7 @@ module tinyQV_top (
     wire       debug_uart_txd;
     wire       debug_signal;
     reg  [7:6] gpio_out_sel;
+    assign o_uart_tx = debug_uart_txd;
 
     reg [3:0] connect_peripheral;
 
@@ -210,7 +213,7 @@ module tinyQV_top (
         end
     end
 
-    uart_tx #(.CLK_HZ(CLOCK_MHZ*1_000_000), .BIT_RATE(1_000_000)) i_debug_uart_tx(
+    uart_tx #(.CLK_HZ(CLOCK_MHZ*1_000_000), .BIT_RATE(9600)) i_debug_uart_tx(
         .clk(clk),
         .resetn(rst_reg_n),
         .uart_txd(debug_uart_txd),

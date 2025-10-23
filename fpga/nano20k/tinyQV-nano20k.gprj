@@ -5,12 +5,12 @@
     <Version>5</Version>
     <Device name="GW2AR-18C" pn="GW2AR-LV18QN88C8/I7">gw2ar18c-000</Device>
     <FileList>
-        <File path="C:/Workspace/FPGA/ttsky25a-tinyQV-fjpolo-rv2a03/fpga/generic/bram.v" type="file.verilog" enable="1"/>
-        <File path="C:/Workspace/FPGA/ttsky25a-tinyQV-fjpolo-rv2a03/fpga/generic/peripherals.v" type="file.verilog" enable="1"/>
-        <File path="C:/Workspace/FPGA/ttsky25a-tinyQV-fjpolo-rv2a03/fpga/generic/sim_qspi.v" type="file.verilog" enable="1"/>
-        <File path="C:/Workspace/FPGA/ttsky25a-tinyQV-fjpolo-rv2a03/fpga/generic/top.v" type="file.verilog" enable="1"/>
+        <File path="src/bram.v" type="file.verilog" enable="1"/>
         <File path="src/gowin_rpll/gowin_rpll.v" type="file.verilog" enable="1"/>
         <File path="src/nano20k_top.sv.v" type="file.verilog" enable="1"/>
+        <File path="src/peripherals.v" type="file.verilog" enable="1"/>
+        <File path="src/sim_qspi.v" type="file.verilog" enable="1"/>
+        <File path="src/top.v" type="file.verilog" enable="1"/>
         <File path="C:/Workspace/FPGA/ttsky25a-tinyQV-fjpolo-rv2a03/src/latch_mem.v" type="file.verilog" enable="1"/>
         <File path="C:/Workspace/FPGA/ttsky25a-tinyQV-fjpolo-rv2a03/src/peri_byte_empty.v" type="file.verilog" enable="1"/>
         <File path="C:/Workspace/FPGA/ttsky25a-tinyQV-fjpolo-rv2a03/src/peri_byte_example.v" type="file.verilog" enable="1"/>
@@ -37,7 +37,8 @@
         <File path="nano20k.cst" type="file.cst" enable="1"/>
         <File path="nano20k.sdc" type="file.sdc" enable="1"/>
         <File path="src/tinyQV-nano20k.rao" type="file.gao" enable="0"/>
-        <File path="src/tinyQV-nano20k__uart.rao" type="file.gao" enable="1"/>
+        <File path="src/tinyQV-nano20k__scope.gao" type="file.gao" enable="1"/>
+        <File path="src/tinyQV-nano20k__uart.rao" type="file.gao" enable="0"/>
         <File path="hello.hex" type="file.other" enable="1"/>
     </FileList>
 </Project>
