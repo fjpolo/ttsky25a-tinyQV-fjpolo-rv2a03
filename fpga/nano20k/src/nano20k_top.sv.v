@@ -47,6 +47,7 @@ tinyQV_top i_tiniyQV(
     .o_uart_tx()
 );
 assign UART_TXD = portA[0];
+// assign UART_TXD = portA[1];
 // assign led[1:0] = portA[1:0];
 
 `ifdef TEST_LEDS

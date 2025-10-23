@@ -210,6 +210,41 @@ module tinyQV_top (
         end
     end
 
+    logic [2:0] uart_waddr;
+    logic uart_tx_en;
+    logic [2:0] uart_raddr;
+    logic uart_rx_en;
+    logic [7:0] uart_rdata;
+    logic uart_rxrdy_n;
+    logic uart_txrdy_n;
+    logic uart_intr;
+    assign uart_tx_en = 1'b0; // Tie off: Disable Tx by default
+    assign uart_waddr = 3'h0; // Tie off
+    assign uart_rx_en = 1'b0; // Tie off: Disable Rx by default
+    assign uart_raddr = 3'h0; // Tie off
+    UART_MASTER_Top i_uart_master(
+        .I_CLK(clk),                   // Clock (Use the fast clock for the UART)
+        .I_RESETN(rst_n),              // Reset (Active Low)
+        .I_TX_EN(debug_uart_tx_start), // From TinyQV core
+        .I_WADDR(uart_waddr),          // From TinyQV core
+        .I_WDATA(data_to_write[7:0]),  // From TinyQV core
+        .I_RX_EN(uart_rx_en),          // From TinyQV core
+        .I_RADDR(uart_raddr),          // From TinyQV core
+        .O_RDATA(uart_rdata),          // To TinyQV core
+        .SIN(),                        // Top-level RX pin
+        .RxRDYn(uart_rxrdy_n),         // To TinyQV core (Interrupt/Status)
+        .SOUT(uo_out[1]),              // Top-level TX pin
+        .TxRDYn(uart_txrdy_n),         // To TinyQV core (Interrupt/Status)
+        .DDIS(),                       // Unused output, left unconnected
+        .INTR(uart_intr),              // To TinyQV core (Interrupt)
+        .DCDn(1'b1),                   // Tie off: Data Carrier Detect (assuming not used)
+        .CTSn(1'b1),                   // Tie off: Clear To Send (assuming not used)
+        .DSRn(1'b1),                   // Tie off: Data Set Ready (assuming not used)
+        .RIn(1'b1),                    // Tie off: Ring Indicator (assuming not used)
+        .DTRn(),                       // Unused output, left unconnected
+        .RTSn()                        // Unused output, left unconnected
+);
+
     uart_tx #(.CLK_HZ(CLOCK_MHZ*1_000_000), .BIT_RATE(1_000_000)) i_debug_uart_tx(
         .clk(clk),
         .resetn(rst_reg_n),
