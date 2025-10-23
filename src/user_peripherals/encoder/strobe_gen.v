@@ -1,4 +1,4 @@
-// `default_nettype none
+`default_nettype none
 
 // create a 1 clock wide pulse every cmp << 6 clock cycles
 module strobe_gen #(

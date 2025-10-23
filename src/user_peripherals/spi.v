@@ -5,7 +5,7 @@
    simple control of SPI LCDs.
    */
 
-// `default_nettype none
+`default_nettype none
 
 module tqvp_spi_ctrl (
     input clk,

@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-// `default_nettype none
+`default_nettype none
 
 module tqvp_edge_counter #(
     parameter ADDR_RESET     = 4'h0,  // write = counter ← 0

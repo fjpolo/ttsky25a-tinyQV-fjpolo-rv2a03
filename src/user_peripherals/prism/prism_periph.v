@@ -46,7 +46,7 @@
 //                   
 // ------------------------------------------------------------------------------
 
-// `default_nettype none
+`default_nettype none
 
 module tqvp_prism (
     input             clk,          // Clock - the TinyQV project clock is normally set to 64MHz.

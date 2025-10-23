@@ -2,11 +2,50 @@
 <GAO_CONFIG>
     <Version>3.0</Version>
     <Mode>Lite</Mode>
-    <AoCore_Lite index="0" sample_clock="sys_clk" trig_type="0" capture_amount="4096" implemention="0" input_register_enabled="0" capture_init_data_enabled="0" module_name="nano20k_top">
+    <AoCore_Lite index="0" sample_clock="pll_64M/clkout" trig_type="0" capture_amount="4096" implemention="0" input_register_enabled="0" capture_init_data_enabled="0" module_name="nano20k_top">
         <SignalList>
+            <Signal capture_enable="true">sys_clk</Signal>
             <Signal capture_enable="true">sys_reset_n</Signal>
+            <Signal capture_enable="true">i_tiniyQV/rst_reg_n</Signal>
             <Signal capture_enable="true">UART_TXD</Signal>
+            <Signal capture_enable="true">i_tiniyQV/debug_uart_tx_start</Signal>
+            <Signal capture_enable="true">i_tiniyQV/debug_uart_txd</Signal>
+            <Bus capture_enable="true" name="i_tiniyQV/data_to_write[31:0]">
+                <Signal>i_tiniyQV/data_to_write[31]</Signal>
+                <Signal>i_tiniyQV/data_to_write[30]</Signal>
+                <Signal>i_tiniyQV/data_to_write[29]</Signal>
+                <Signal>i_tiniyQV/data_to_write[28]</Signal>
+                <Signal>i_tiniyQV/data_to_write[27]</Signal>
+                <Signal>i_tiniyQV/data_to_write[26]</Signal>
+                <Signal>i_tiniyQV/data_to_write[25]</Signal>
+                <Signal>i_tiniyQV/data_to_write[24]</Signal>
+                <Signal>i_tiniyQV/data_to_write[23]</Signal>
+                <Signal>i_tiniyQV/data_to_write[22]</Signal>
+                <Signal>i_tiniyQV/data_to_write[21]</Signal>
+                <Signal>i_tiniyQV/data_to_write[20]</Signal>
+                <Signal>i_tiniyQV/data_to_write[19]</Signal>
+                <Signal>i_tiniyQV/data_to_write[18]</Signal>
+                <Signal>i_tiniyQV/data_to_write[17]</Signal>
+                <Signal>i_tiniyQV/data_to_write[16]</Signal>
+                <Signal>i_tiniyQV/data_to_write[15]</Signal>
+                <Signal>i_tiniyQV/data_to_write[14]</Signal>
+                <Signal>i_tiniyQV/data_to_write[13]</Signal>
+                <Signal>i_tiniyQV/data_to_write[12]</Signal>
+                <Signal>i_tiniyQV/data_to_write[11]</Signal>
+                <Signal>i_tiniyQV/data_to_write[10]</Signal>
+                <Signal>i_tiniyQV/data_to_write[9]</Signal>
+                <Signal>i_tiniyQV/data_to_write[8]</Signal>
+                <Signal>i_tiniyQV/data_to_write[7]</Signal>
+                <Signal>i_tiniyQV/data_to_write[6]</Signal>
+                <Signal>i_tiniyQV/data_to_write[5]</Signal>
+                <Signal>i_tiniyQV/data_to_write[4]</Signal>
+                <Signal>i_tiniyQV/data_to_write[3]</Signal>
+                <Signal>i_tiniyQV/data_to_write[2]</Signal>
+                <Signal>i_tiniyQV/data_to_write[1]</Signal>
+                <Signal>i_tiniyQV/data_to_write[0]</Signal>
+            </Bus>
+            <Signal capture_enable="true">i_tiniyQV/debug_uart_tx_busy</Signal>
         </SignalList>
     </AoCore_Lite>
-    <GAO_ID>0100100000000011</GAO_ID>
+    <GAO_ID>0111110110111101</GAO_ID>
 </GAO_CONFIG>

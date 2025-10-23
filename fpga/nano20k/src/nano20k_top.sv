@@ -1,8 +1,3 @@
-/*
- * Copyright (c) 2025 @fjpolo
- * SPDX-License-Identifier: Apache-2.0
- */
-
 module nano20k_top(
     input sys_clk,
     input s1,
@@ -26,36 +21,33 @@ wire sys_reset_n = ~(s1 | s2);
 assign led[0] = ~UART_RXD; 
 assign led[1] = ~UART_TXD; 
 // assign led[0] = sys_clk; 
-// assign led[1] = clk_64Mhz; 
+// assign led[1] = clk_64MHz; 
 `endif
 
-wire clk_64Mhz;
-// NOTE: Assuming your Gowin_rPLL is configured to output the desired 81MHz clock.
-// The input must be the top-level clock: sys_clk
-Gowin_rPLL pll_80k(
-    .clkout(clk_64Mhz),
+wire clk_64MHz;
+Gowin_rPLL pll_64M(
+    .clkout(clk_64MHz),
     .clkin(sys_clk)
     );
 
 reg [7:0] portA;
 
 tinyQV_top i_tiniyQV(
-    .clk(clk_64Mhz),
+    .clk(clk_64MHz),
     .rst_n(sys_reset_n),
     .uo_out(portA),
     .i_uart_rx(),
     .o_uart_tx()
 );
 assign UART_TXD = portA[0];
-// assign UART_TXD = portA[1];
 // assign led[1:0] = portA[1:0];
 
 `ifdef TEST_LEDS
     reg [24:0] counter = 'h00;
     // Using sys_clk for blinking counter is often better for sanity check
-    // but the final core must run on clk_64Mhz
+    // but the final core must run on clk_64MHz
     always @(posedge sys_clk) begin
-        if(counter == 64_000_000) // Assuming sys_clk is 64MHz, this is 1 second
+        if(counter == 27_000_000) // Assuming sys_clk is 27MHz, this is 1 second
             counter = 'h00;
         else
             counter = counter + 1;
@@ -63,7 +55,7 @@ assign UART_TXD = portA[0];
 
     reg r_led_output = 1'b1;
     always @(posedge sys_clk) begin
-        if(counter ==64_000_000)
+        if(counter == 27_000_000)
             r_led_output = ~r_led_output;
     end
     

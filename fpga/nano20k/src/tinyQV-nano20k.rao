@@ -2,7 +2,7 @@
 <GAO_CONFIG>
     <Version>3.0</Version>
     <Mode>Lite</Mode>
-    <AoCore_Lite index="0" sample_clock="clk_80Mhz" trig_type="0" capture_amount="4096" implemention="0" input_register_enabled="1" capture_init_data_enabled="1" module_name="nano20k_top">
+    <AoCore_Lite index="0" sample_clock="clk_64MHz" trig_type="0" capture_amount="4096" implemention="0" input_register_enabled="1" capture_init_data_enabled="1" module_name="nano20k_top">
         <SignalList>
             <Signal capture_enable="true">sys_clk</Signal>
             <Signal capture_enable="true">sys_reset_n</Signal>

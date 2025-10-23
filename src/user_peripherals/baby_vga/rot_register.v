@@ -1,4 +1,4 @@
-// `default_nettype none
+`default_nettype none
 
 module rot_register (
     input  wire       clk,

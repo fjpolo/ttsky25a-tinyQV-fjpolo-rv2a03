@@ -7,7 +7,7 @@
     <FileList>
         <File path="src/bram.v" type="file.verilog" enable="1"/>
         <File path="src/gowin_rpll/gowin_rpll.v" type="file.verilog" enable="1"/>
-        <File path="src/nano20k_top.sv.v" type="file.verilog" enable="1"/>
+        <File path="src/nano20k_top.sv" type="file.verilog" enable="1"/>
         <File path="src/peripherals.v" type="file.verilog" enable="1"/>
         <File path="src/sim_qspi.v" type="file.verilog" enable="1"/>
         <File path="src/top.v" type="file.verilog" enable="1"/>
@@ -37,9 +37,9 @@
         <File path="C:/Workspace/FPGA/ttsky25a-tinyQV-fjpolo-rv2a03/src/user_peripherals/uart/uart_tx.v" type="file.verilog" enable="1"/>
         <File path="nano20k.cst" type="file.cst" enable="1"/>
         <File path="nano20k.sdc" type="file.sdc" enable="1"/>
-        <File path="src/tinyQV-nano20k.rao" type="file.gao" enable="0"/>
+        <File path="src/tinyQV-nano20k.rao" type="file.gao" enable="1"/>
         <File path="src/tinyQV-nano20k__scope.gao" type="file.gao" enable="0"/>
-        <File path="src/tinyQV-nano20k__uart.rao" type="file.gao" enable="1"/>
-        <File path="hello.hex" type="file.other" enable="1"/>
+        <File path="src/tinyQV-nano20k__uart.rao" type="file.gao" enable="0"/>
+        <File path="program.hex" type="file.other" enable="1"/>
     </FileList>
 </Project>

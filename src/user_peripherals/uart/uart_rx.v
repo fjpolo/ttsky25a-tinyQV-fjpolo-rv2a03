@@ -9,7 +9,7 @@
 // - UART reciever module.
 //
 
-// `default_nettype none
+`default_nettype none
 
 module tqvp_uart_rx #(parameter 
     COUNT_REG_LEN = 13,        // Enough to allow baud rates down to 9600 at 64MHz clock

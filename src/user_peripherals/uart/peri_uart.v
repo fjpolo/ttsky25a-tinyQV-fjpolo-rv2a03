@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-// `default_nettype none
+`default_nettype none
 
 // UART peripheral - this wraps both TX and RX UART
 module tqvp_uart_wrapper #(

@@ -1,4 +1,4 @@
-// `default_nettype none
+`default_nettype none
 
 module tqvp_dsatizabal_fpu (
     input         clk,

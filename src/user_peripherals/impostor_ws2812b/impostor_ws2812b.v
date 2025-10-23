@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-// `default_nettype none
+`default_nettype none
 
 module tqvp_impostor_WS2812b (
     input         clk,          // Clock - the TinyQV project clock is normally set to 64MHz.

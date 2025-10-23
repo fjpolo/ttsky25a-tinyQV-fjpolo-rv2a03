@@ -245,7 +245,7 @@ module tinyQV_top (
         .RTSn()                        // Unused output, left unconnected
 );
 
-    uart_tx #(.CLK_HZ(CLOCK_MHZ*1_000_000), .BIT_RATE(1_000_000)) i_debug_uart_tx(
+    uart_tx #(.CLK_HZ(CLOCK_MHZ*1_000_000), .BIT_RATE(9600)) i_debug_uart_tx(
         .clk(clk),
         .resetn(rst_reg_n),
         .uart_txd(debug_uart_txd),

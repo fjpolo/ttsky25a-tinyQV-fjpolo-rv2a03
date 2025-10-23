@@ -3,7 +3,7 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-// `default_nettype none
+`default_nettype none
 
 // Template for a TinyQV byte peripheral
 module tqvp_byte_example (

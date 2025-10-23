@@ -1,4 +1,4 @@
-// `default_nettype none
+`default_nettype none
 
 // Modified from htfab's version, https://github.com/htfab/tinyqv-baby-vga
 
