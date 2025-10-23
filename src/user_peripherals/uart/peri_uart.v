@@ -8,7 +8,7 @@
 // UART peripheral - this wraps both TX and RX UART
 module tqvp_uart_wrapper #(
     parameter DIVIDER_REG_LEN = 13,        // Enough to allow baud rates down to 9600 at 64MHz clock
-    parameter CLOCK_MHZ = 27
+    parameter CLOCK_MHZ = 64
     )(
     input         clk,          // Clock - the TinyQV project clock is normally set to 64MHz.
     input         rst_n,        // Reset_n - low to reset.
