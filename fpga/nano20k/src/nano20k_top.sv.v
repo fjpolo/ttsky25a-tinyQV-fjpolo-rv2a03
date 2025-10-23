@@ -1,3 +1,8 @@
+/*
+ * Copyright (c) 2025 @fjpolo
+ * SPDX-License-Identifier: Apache-2.0
+ */
+
 module nano20k_top(
     input sys_clk,
     input s1,
