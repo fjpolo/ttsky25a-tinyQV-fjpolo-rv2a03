@@ -4,13 +4,13 @@
 
 module sim_qspi (
     // External SPI interface
-    input      [3:0] qspi_data_in,
+    input wire      [3:0] qspi_data_in,
     output reg [3:0] qspi_data_out,
-    input            qspi_clk,
+    input wire            qspi_clk,
 
-    input qspi_flash_select,
-    input qspi_ram_a_select,
-    input qspi_ram_b_select
+    input wire qspi_flash_select,
+    input wire qspi_ram_a_select,
+    input wire qspi_ram_b_select
 );
 
     // --- CONFIGURATION PARAMETERS ---

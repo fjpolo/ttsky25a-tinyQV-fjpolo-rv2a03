@@ -10,26 +10,26 @@ module tqvp_uart_wrapper #(
     parameter DIVIDER_REG_LEN = 13,        // Enough to allow baud rates down to 9600 at 64MHz clock
     parameter CLOCK_MHZ = 64
     )(
-    input         clk,          // Clock - the TinyQV project clock is normally set to 64MHz.
-    input         rst_n,        // Reset_n - low to reset.
+    input wire         clk,          // Clock - the TinyQV project clock is normally set to 64MHz.
+    input wire         rst_n,        // Reset_n - low to reset.
 
-    input  [7:0]  ui_in,        // The input PMOD, always available.  Note that ui_in[7] is normally used for UART RX.
+    input wire  [7:0]  ui_in,        // The input PMOD, always available.  Note that ui_in[7] is normally used for UART RX.
                                 // The inputs are synchronized to the clock, note this will introduce 2 cycles of delay on the inputs.
 
-    output [7:0]  uo_out,       // The output PMOD.  Each wire is only connected if this peripheral is selected.
+    output wire [7:0]  uo_out,       // The output PMOD.  Each wire is only connected if this peripheral is selected.
                                 // Note that uo_out[0] is normally used for UART TX.
 
-    input [5:0]   address,      // Address within this peripheral's address space
-    input [31:0]  data_in,      // Data in to the peripheral, bottom 8, 16 or all 32 bits are valid on write.
+    input wire [5:0]   address,      // Address within this peripheral's address space
+    input wire [31:0]  data_in,      // Data in to the peripheral, bottom 8, 16 or all 32 bits are valid on write.
 
     // Data read and write requests from the TinyQV core.
-    input [1:0]   data_write_n, // 11 = no write, 00 = 8-bits, 01 = 16-bits, 10 = 32-bits
-    input [1:0]   data_read_n,  // 11 = no read,  00 = 8-bits, 01 = 16-bits, 10 = 32-bits
+    input wire [1:0]   data_write_n, // 11 = no write, 00 = 8-bits, 01 = 16-bits, 10 = 32-bits
+    input wire [1:0]   data_read_n,  // 11 = no read,  00 = 8-bits, 01 = 16-bits, 10 = 32-bits
     
-    output [31:0] data_out,     // Data out from the peripheral, bottom 8, 16 or all 32 bits are valid on read when data_ready is high.
-    output        data_ready,
+    output wire [31:0] data_out,     // Data out from the peripheral, bottom 8, 16 or all 32 bits are valid on read when data_ready is high.
+    output wire        data_ready,
 
-    output [1:0]  user_interrupt  // Dedicated interrupt request for this peripheral
+    output wire [1:0]  user_interrupt  // Dedicated interrupt request for this peripheral
 );
 
     // A read/write register to control the divider

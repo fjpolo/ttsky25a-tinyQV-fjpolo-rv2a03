@@ -9,15 +9,15 @@ module latch_mem #(
     parameter RAM_BYTES = 32,
     parameter ADDR_BITS = 5
 ) (
-    input         clk,
-    input         rstn,
+    input wire         clk,
+    input wire         rstn,
 
-    input [ADDR_BITS-1:0]   addr_in,   // Address within the RAM
-    input [31:0]  data_in,             // Data in to the RAM, bottom 8, 16 or all 32 bits are valid on write.
+    input wire [ADDR_BITS-1:0]   addr_in,   // Address within the RAM
+    input wire [31:0]  data_in,             // Data in to the RAM, bottom 8, 16 or all 32 bits are valid on write.
 
     // Data read and write requests from the TinyQV core.
-    input [1:0]   data_write_n, // 11 = no write, 00 = 8-bits, 01 = 16-bits, 10 = 32-bits
-    input [1:0]   data_read_n,  // 11 = no read,  00 = 8-bits, 01 = 16-bits, 10 = 32-bits
+    input wire [1:0]   data_write_n, // 11 = no write, 00 = 8-bits, 01 = 16-bits, 10 = 32-bits
+    input wire [1:0]   data_read_n,  // 11 = no read,  00 = 8-bits, 01 = 16-bits, 10 = 32-bits
     
     output reg [31:0] data_out,     // Data out from the peripheral, bottom 8, 16 or all 32 bits are valid on read when data_ready is high.
     output reg  data_ready
@@ -29,7 +29,7 @@ module latch_mem #(
 
     genvar i;
     generate
-    for (i = 0; i < RAM_BYTES; i = i+1) begin
+    for (i = 0; i < RAM_BYTES; i = i+1) begin: loop1
         latch_reg_n #(.WIDTH(8)) l_ram (clk, wen[i], latch_data_in, latch_data_out[i]);
     end
     endgenerate
@@ -58,7 +58,7 @@ module latch_mem #(
 
     wire any_write = data_write_n != 2'b11;
     generate
-    for (i = 0; i < RAM_BYTES; i = i+1) begin
+    for (i = 0; i < RAM_BYTES; i = i+1) begin: loop2
         assign wen[i] = (i == addr) && any_write;
     end
     endgenerate

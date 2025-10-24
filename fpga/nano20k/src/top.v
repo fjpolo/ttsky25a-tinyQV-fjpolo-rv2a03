@@ -3,16 +3,16 @@
  * SPDX-License-Identifier: Apache-2.0
  */
 
-`default_nettype none
+// `default_nettype none
 
 module tinyQV_top (
-        input clk,
-        input rst_n,
+        input wire clk,
+        input wire rst_n,
 
-        input [7:0] ui_in,
-        output [7:0] uo_out,
-        output o_uart_tx,
-        input  i_uart_rx
+        input wire [7:0] ui_in,
+        output wire [7:0] uo_out,
+        output wire o_uart_tx,
+        input wire  i_uart_rx
 
 );
     localparam CLOCK_MHZ = 64;

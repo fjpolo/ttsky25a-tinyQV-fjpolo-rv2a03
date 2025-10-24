@@ -7,18 +7,18 @@
 
 // Template for a TinyQV byte peripheral
 module tqvp_byte_example (
-    input         clk,
-    input         rst_n,
+    input wire         clk,
+    input wire         rst_n,
 
-    input  [7:0]  ui_in,        // The input PMOD, always available
-    output [7:0]  uo_out,       // The output PMOD.  Each wire is only connected if this peripheral is selected
+    input wire  [7:0]  ui_in,        // The input PMOD, always available
+    output wire [7:0]  uo_out,       // The output PMOD.  Each wire is only connected if this peripheral is selected
 
-    input [3:0]   address,      // Address within this peripheral's address space
+    input wire [3:0]   address,      // Address within this peripheral's address space
 
-    input         data_write,   // Data write request from the TinyQV core.
-    input [7:0]   data_in,      // Data in to the peripheral, valid when data_write is high.
+    input wire         data_write,   // Data write request from the TinyQV core.
+    input wire [7:0]   data_in,      // Data in to the peripheral, valid when data_write is high.
     
-    output [7:0]  data_out      // Data out from the peripheral, set this in accordance with the supplied address
+    output wire [7:0]  data_out      // Data out from the peripheral, set this in accordance with the supplied address
 );
 
     // Implement an 8-bit read/write register at address 0

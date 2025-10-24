@@ -15,25 +15,25 @@
 // 0x800_0100 - 3ff: 12 user peripherals (64 bytes each, word and halfword access supported, each has an interrupt)
 // 0x800_0400 - 4ff: 16 simple peripherals (16 bytes each, byte access only)
 module tinyQV_peripherals #(parameter CLOCK_MHZ=64) (
-    input         clk,
-    input         rst_n,
+    input wire         clk,
+    input wire         rst_n,
 
-    input  [7:0]  ui_in,        // The input PMOD, always available
-    output [7:0]  uo_out,       // The output PMOD.  Each wire is only connected if this peripheral is selected
+    input wire  [7:0]  ui_in,        // The input PMOD, always available
+    output wire [7:0]  uo_out,       // The output PMOD.  Each wire is only connected if this peripheral is selected
 
-    input [10:0]  addr_in,
-    input [31:0]  data_in,      // Data in to the peripheral, bottom 8, 16 or all 32 bits are valid on write.
+    input wire [10:0]  addr_in,
+    input wire [31:0]  data_in,      // Data in to the peripheral, bottom 8, 16 or all 32 bits are valid on write.
 
     // Data read and write requests from the TinyQV core.
-    input [1:0]   data_write_n, // 11 = no write, 00 = 8-bits, 01 = 16-bits, 10 = 32-bits
-    input [1:0]   data_read_n,  // 11 = no read,  00 = 8-bits, 01 = 16-bits, 10 = 32-bits
+    input wire [1:0]   data_write_n, // 11 = no write, 00 = 8-bits, 01 = 16-bits, 10 = 32-bits
+    input wire [1:0]   data_read_n,  // 11 = no read,  00 = 8-bits, 01 = 16-bits, 10 = 32-bits
 
-    output [31:0] data_out,     // Data out from the peripheral, bottom 8, 16 or all 32 bits are valid on read when data_ready is high.
-    output        data_ready,
+    output wire [31:0] data_out,     // Data out from the peripheral, bottom 8, 16 or all 32 bits are valid on read when data_ready is high.
+    output wire        data_ready,
 
-    input         data_read_complete,  // Set by TinyQV when a read is complete
+    input wire         data_read_complete,  // Set by TinyQV when a read is complete
 
-    output [15:2] user_interrupts  // User peripherals get interrupts 2-15
+    output wire [15:2] user_interrupts  // User peripherals get interrupts 2-15
 );
 
     // Registered data out to TinyQV
@@ -137,7 +137,7 @@ module tinyQV_peripherals #(parameter CLOCK_MHZ=64) (
 
     genvar i;
     generate
-        for (i = 0; i < 8; i = i + 1) begin
+        for (i = 0; i < 8; i = i + 1) begin: loop1
             always @(posedge clk) begin
                 if (!rst_n) begin
                     gpio_out_func_sel[i] <= (i == 0 || i == 1) ? PERI_UART : PERI_GPIO;
