@@ -35,6 +35,7 @@ reg [7:0] portA;
 tinyQV_top i_tiniyQV(
     .clk(clk_64MHz),
     .rst_n(sys_reset_n),
+    .ui_in(),
     .uo_out(portA),
     .i_uart_rx(),
     .o_uart_tx()

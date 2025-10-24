@@ -114,7 +114,7 @@ module tinyQV_peripherals #(parameter CLOCK_MHZ=64) (
 
     // --------------------------------------------------------------------- //
     // GPIO
-
+    // i_user_peri02
     reg [4:0] gpio_out_func_sel [0:7];
     reg [7:0] gpio_out;
 
@@ -162,7 +162,7 @@ module tinyQV_peripherals #(parameter CLOCK_MHZ=64) (
 
     // --------------------------------------------------------------------- //
     // UART
-
+    // i_user_peri03
     tqvp_uart_wrapper #(.CLOCK_MHZ(CLOCK_MHZ)) i_uart (
         .clk(clk),
         .rst_n(rst_n),
@@ -190,7 +190,7 @@ module tinyQV_peripherals #(parameter CLOCK_MHZ=64) (
     // --------------------------------------------------------------------- //
     // Full interface peripherals
 
-    tqvp_full_empty i_user_peri04(
+    tqvp_full_empty i_user_peri04 (
         .clk(clk),
         .rst_n(rst_n),
 
@@ -266,7 +266,7 @@ module tinyQV_peripherals #(parameter CLOCK_MHZ=64) (
         .user_interrupt(user_interrupts[7])
     );
 
-    tqvp_full_empty i_prism08 (
+    tqvp_full_empty i_user_peri08 (
         .clk(clk),
         .rst_n(rst_n),
 
@@ -285,7 +285,7 @@ module tinyQV_peripherals #(parameter CLOCK_MHZ=64) (
         .user_interrupt(user_interrupts[8])
     );
 
-    tqvp_full_empty i_dwarf_line_table_accelerator09 (
+    tqvp_full_empty i_user_peri09 (
         .clk(clk),
         .rst_n(rst_n),
 
@@ -399,7 +399,7 @@ module tinyQV_peripherals #(parameter CLOCK_MHZ=64) (
         .user_interrupt(user_interrupts[14])
     );
 
-    tqvp_full_example i_user_peri15 (
+    tqvp_full_empty i_user_peri15 (
         .clk(clk),
         .rst_n(rst_n),
 
@@ -422,7 +422,7 @@ module tinyQV_peripherals #(parameter CLOCK_MHZ=64) (
     // --------------------------------------------------------------------- //
     // Byte interface peripherals
 
-    tqvp_byte_empty matt_encoder00 (
+    tqvp_byte_empty i_user_simple00 (
         .clk(clk),
         .rst_n(rst_n),
 
@@ -437,7 +437,7 @@ module tinyQV_peripherals #(parameter CLOCK_MHZ=64) (
         .data_out(data_from_simple_peri[0])
     );
 
-    tqvp_byte_empty i_edge_counter01 (
+    tqvp_byte_empty i_user_simple01 (
         .clk(clk),
         .rst_n(rst_n),
 
@@ -452,7 +452,7 @@ module tinyQV_peripherals #(parameter CLOCK_MHZ=64) (
         .data_out(data_from_simple_peri[1])
     );
 
-    tqvp_byte_empty i_cattuto_ws2812b_driver02 (
+    tqvp_byte_empty i_user_simple02 (
         .clk(clk),
         .rst_n(rst_n),
 
@@ -467,7 +467,7 @@ module tinyQV_peripherals #(parameter CLOCK_MHZ=64) (
         .data_out(data_from_simple_peri[2])
     );
 
-    tqvp_byte_empty javi_WS2812b_slave (
+    tqvp_byte_empty i_user_simple03 (
         .clk(clk),
         .rst_n(rst_n),
 
@@ -482,7 +482,7 @@ module tinyQV_peripherals #(parameter CLOCK_MHZ=64) (
         .data_out(data_from_simple_peri[3])
     );
 
-    tqvp_byte_empty pwm_sk(
+    tqvp_byte_empty i_user_simple04 (
         .clk(clk),
         .rst_n(rst_n),
 
@@ -497,7 +497,7 @@ module tinyQV_peripherals #(parameter CLOCK_MHZ=64) (
         .data_out(data_from_simple_peri[4])
     );
 
-    tqvp_byte_empty matt_pwm (
+    tqvp_byte_empty i_user_simple05 (
         .clk(clk),
         .rst_n(rst_n),
 
@@ -512,7 +512,7 @@ module tinyQV_peripherals #(parameter CLOCK_MHZ=64) (
         .data_out(data_from_simple_peri[5])
     );
 
-    tqvp_byte_empty spike(
+    tqvp_byte_empty i_user_simple06 (
         .clk(clk),
         .rst_n(rst_n),
         .ui_in(ui_in),
@@ -572,7 +572,7 @@ module tinyQV_peripherals #(parameter CLOCK_MHZ=64) (
         .data_out(data_from_simple_peri[9])
     );
 
-    tqvp_byte_empty i_user_simple010 (
+    tqvp_byte_empty i_user_simple10 (
         .clk(clk),
         .rst_n(rst_n),
 
@@ -587,7 +587,7 @@ module tinyQV_peripherals #(parameter CLOCK_MHZ=64) (
         .data_out(data_from_simple_peri[10])
     );
 
-    tqvp_byte_empty i_user_simple011 (
+    tqvp_byte_empty i_user_simple11 (
         .clk(clk),
         .rst_n(rst_n),
 
@@ -602,7 +602,7 @@ module tinyQV_peripherals #(parameter CLOCK_MHZ=64) (
         .data_out(data_from_simple_peri[11])
     );
 
-    tqvp_byte_empty i_user_simple012 (
+    tqvp_byte_empty i_user_simple12 (
         .clk(clk),
         .rst_n(rst_n),
 
@@ -617,7 +617,7 @@ module tinyQV_peripherals #(parameter CLOCK_MHZ=64) (
         .data_out(data_from_simple_peri[12])
     );
 
-    tqvp_byte_empty i_user_simple013 (
+    tqvp_byte_empty i_user_simple13 (
         .clk(clk),
         .rst_n(rst_n),
 
@@ -632,7 +632,7 @@ module tinyQV_peripherals #(parameter CLOCK_MHZ=64) (
         .data_out(data_from_simple_peri[13])
     );
 
-    tqvp_byte_empty i_user_simple014 (
+    tqvp_byte_empty i_user_simple14 (
         .clk(clk),
         .rst_n(rst_n),
 
@@ -647,7 +647,7 @@ module tinyQV_peripherals #(parameter CLOCK_MHZ=64) (
         .data_out(data_from_simple_peri[14])
     );
 
-    tqvp_byte_empty i_user_simple015 (
+    tqvp_byte_empty i_user_simple15 (
         .clk(clk),
         .rst_n(rst_n),
 
