@@ -1,8 +1,9 @@
 import machine
 from machine import Pin
+from tinyqv import get_base_address
 
-PERIPHERAL_NUM = 5
-BASE_ADDRESS = 0x800_0000 + PERIPHERAL_NUM*64
+PERIPHERAL_NUM = 33
+BASE_ADDRESS = get_base_address(PERIPHERAL_NUM)
 
 REG_PERIOD = 0
 REG_PHASE = 1

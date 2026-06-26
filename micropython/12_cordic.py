@@ -1,9 +1,10 @@
 import machine
 import time
 import math
+from tinyqv import get_base_address
 
-peripheral_num = 12
-base = 0x800_0000 + 64*peripheral_num
+peripheral_num = 6
+base = get_base_address(peripheral_num)
 
 def to_fp(v, point=14):
     return int(v * (1 << point)) & 0xffff
