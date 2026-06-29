@@ -42,6 +42,8 @@ The functions are named:
 - `read_word_reg(peripheral_num, address)` read a word (32 bit) register
 - `write_word_reg(peripheral_num, address, value)` write `value` to a word (32 bit) register
 
+See the [tinyqv module source](https://github.com/MichaelBell/micropython/blob/tinyqv-sky25a/ports/tinyQV/modules/tinyqv.py) for full details.
+
 ## Reading input pins
 
 The input pins in0-in7 have pin numbers 8-15 in Micropython.  So for example:
@@ -58,4 +60,4 @@ You can go into "paste mode" at the Micropython into the REPL by pressing Ctrl-E
 
 ## Tests
 
-See the python tests in this directory for tests of some peripherals.  Note that some of this code has not yet been tested 
+See the python tests in this directory for tests of some peripherals.  Note that some of this code has not yet been tested - let us know in the Discord when you get peripherals working, and please make PRs to contribute more tests!

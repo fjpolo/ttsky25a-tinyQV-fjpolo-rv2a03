@@ -1,7 +1,7 @@
 from machine import Pin
 from tinyqv import read_byte_reg, write_byte_reg
 
-PERIPHERAL_NUM = 21
+PERIPHERAL_NUM = 18
 
 # Select the PWM peripheral on out2
 Pin(2, Pin.OUT, func_sel=PERIPHERAL_NUM)
