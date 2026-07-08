@@ -61,3 +61,28 @@ You can go into "paste mode" at the Micropython into the REPL by pressing Ctrl-E
 ## Tests
 
 See the python tests in this directory for tests of some peripherals.  Note that some of this code has not yet been tested - let us know in the Discord when you get peripherals working, and please make PRs to contribute more tests!
+
+## Using mpremote with TinyQV
+
+If you want to go beyond what can easily be done through the web interface, you can setup the TinyTapeout demo board to act as a USB bridge to allow mpremote to control Micropython on TinyQV.
+
+First you need to do this one time setup - with your demoboard connected run 
+
+    mpremote mip install usb-device
+    mpremote mip install usb-device-cdc 
+    
+this installs the micropython-lib USB drivers to the demoboard
+
+Then grab this [USB bridge script](https://github.com/MichaelBell/tt-micropython-scripts/blob/main/tqv_usb_bridge.py) and run it with mpremote: 
+
+    mpremote run tqv_usb_bridge.py
+
+mpremote will give an error because the existing USB port disconnected, but the script should run OK.
+
+You should now see two new ttys, one is the demoboard and the other is TinyQV micropython.  TinyQV should be on the higher numbered one and mpremote should work against it as normal.
+
+As you now have two ttys you'll need to specify which tty mpremote should use, e.g. `mpremote a2 repl` if TinyQV ends up on ttyACM2.  If you get the demoboard then nothing will happen when you press Enter or Ctrl-D, if you're connected to TinyQV you should get the Micropython prompt.
+
+Try running the scripts from this directory with e.g. `mpremote a2 run 13_vga_console.py` (adjusting the tty accordingly).
+
+Be aware that TinyQV doesn't have a persistent Micropython filesystem.  Files are stored in PSRAM so will be lost when you power off the demoboard.
