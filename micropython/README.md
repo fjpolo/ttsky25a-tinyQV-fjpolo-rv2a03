@@ -1,6 +1,6 @@
 # Micropython testing on TinyQV
 
-Connect the QSPI Pmod to the BIDIR socket on the TinyTapeout demo board, and load the Micropython binary with [the programmer](https://program.tinyqv.com) by selecting it and clicking FLASH AND RUN.
+Connect the QSPI Pmod to the BIDIR socket on the TinyTapeout demo board, and load the Micropython binary with [the programmer](https://program.tinyqv.com) by selecting Micropython in the programmer and clicking FLASH AND RUN.
 
 A Micropython REPL should appear in a text box at the top of the page.
 
