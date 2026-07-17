@@ -73,7 +73,7 @@ First you need to do this one time setup - with your demoboard connected run
     
 this installs the micropython-lib USB drivers to the demoboard
 
-Then grab this [USB bridge script](https://github.com/MichaelBell/tt-micropython-scripts/blob/main/tqv_usb_bridge.py) and run it with mpremote: 
+Use the [USB bridge script](tqv_usb_bridge.py) and run it with mpremote: 
 
     mpremote run tqv_usb_bridge.py
 
