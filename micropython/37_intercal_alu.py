@@ -79,7 +79,7 @@ def soft_mingle16(a, b):
 	c = 0
 	db = 1
 	sb = 1
-	while sb < 0x10000:
+	for i in range(16):
 		if (b & sb):
 			c |= db
 		db <<= 1
@@ -93,7 +93,7 @@ def soft_select16(a, b):
 	c = 0
 	db = 1
 	sb = 1
-	while sb < 0x10000:
+	for i in range(16):
 		if (b & sb):
 			if (a & sb):
 				c |= db
@@ -105,7 +105,7 @@ def soft_select32(a, b):
 	c = 0
 	db = 1
 	sb = 1
-	while sb < 0x100000000:
+	for i in range(32):
 		if (b & sb):
 			if (a & sb):
 				c |= db
