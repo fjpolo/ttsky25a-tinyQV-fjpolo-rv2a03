@@ -13,17 +13,19 @@ def save_wav(filename, samples, sample_rate=22050):
     if not samples:
         return
 
-    # Digital DC-blocking high-pass filter (simulating board-level AC coupling capacitor)
-    # y[n] = x[n] - x[n-1] + R * y[n-1]
-    R = 0.995
+    # In RV2A03, when the channels are playing, samples are unipolar positive (0 to ~32).
+    # To avoid differentiator distortion (shark-fin decay) caused by high-pass filters,
+    # we center active audio around its DC midpoint so square waves remain 100% flat
+    # and triangle waves remain pure linear ramps.
+    active_samples = [float(s) for s in samples if s != 0]
+    mean_val = (sum(active_samples) / len(active_samples)) if active_samples else 0.0
+
     filtered = []
-    y = 0.0
-    prev_x = float(samples[0])
     for s in samples:
-        fx = float(s)
-        y = fx - prev_x + R * y
-        prev_x = fx
-        filtered.append(y)
+        if s == 0:
+            filtered.append(0.0)
+        else:
+            filtered.append(float(s) - mean_val)
 
     max_val = max(abs(f) for f in filtered) or 1.0
     scale = 28000.0 / max_val
@@ -34,7 +36,7 @@ def save_wav(filename, samples, sample_rate=22050):
         wav_file.setframerate(sample_rate)
         raw_bytes = bytearray()
         for f in filtered:
-            norm = int(f * scale)
+            norm = int(round(f * scale))
             norm = max(-32767, min(32767, norm))
             raw_bytes.extend(struct.pack('<h', norm))
         wav_file.writeframes(raw_bytes)
@@ -88,13 +90,20 @@ async def test_rv2a03_test(dut):
     # Audio sample capture
     audio_samples = []
     is_running = True
+    is_demo = False
 
     async def record_audio():
+        silent_count = 0
         while is_running:
             await ClockCycles(dut.clk, 64)
             try:
                 val = int(dut.user_project.i_peripherals.i_user_peri14.apu_output_sample_16b.value)
-                audio_samples.append(val)
+                if val != 0 or is_demo:
+                    audio_samples.append(val)
+                    silent_count = 0
+                elif silent_count < 20: # Keep short inter-test breath (20 samples) instead of 5,000
+                    audio_samples.append(0)
+                    silent_count += 1
             except Exception:
                 pass
 
@@ -110,6 +119,10 @@ async def test_rv2a03_test(dut):
             break
 
         dut._log.info(f"[UART] {line}")
+
+        if "Playing NES Chiptune Demo..." in line:
+            is_demo = True
+            dut._log.info(">>> Recording NES Chiptune Demo <<<")
 
         if "5/5 tests passed successfully" in line:
             tests_passed = True
