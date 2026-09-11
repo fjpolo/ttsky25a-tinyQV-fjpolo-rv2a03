@@ -1,0 +1,39 @@
+[*]
+[*] GTKWave Analyzer Layout for RV2A03 APU Audio Inspection
+[*]
+[dumpfile] "tb_qspi.vcd"
+[savefile] "tb_apu.gtkw"
+[timestart] 33000000000
+[size] 1920 1000
+[pos] -1 -1
+*-18.000000 33500000000 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1 -1
+[treeopen] tb_qspi.
+[treeopen] tb_qspi.user_project.
+[treeopen] tb_qspi.user_project.i_peripherals.
+[treeopen] tb_qspi.user_project.i_peripherals.i_user_peri14.
+[treeopen] tb_qspi.user_project.i_peripherals.i_user_peri14.apu.
+[sst_width] 300
+[signals_width] 280
+[sst_expanded] 1
+[sst_vpaned_height] 250
+@28
+tb_qspi.clk
+tb_qspi.rst_n
+@200
+-APU Analog Audio Output
+@8420020
+tb_qspi.user_project.i_peripherals.i_user_peri14.apu_output_sample_16b[15:0]
+tb_qspi.user_project.i_peripherals.i_user_peri14.apu.Sample[15:0]
+@200
+-Individual APU Voices
+@8420020
+tb_qspi.user_project.i_peripherals.i_user_peri14.apu.Sq1Sample[3:0]
+tb_qspi.user_project.i_peripherals.i_user_peri14.apu.Sq2Sample[3:0]
+tb_qspi.user_project.i_peripherals.i_user_peri14.apu.TriSample[3:0]
+tb_qspi.user_project.i_peripherals.i_user_peri14.apu.NoiSample[3:0]
+@28
+tb_qspi.user_project.i_peripherals.i_user_peri14.apu.Sq1NonZero
+tb_qspi.user_project.i_peripherals.i_user_peri14.apu.TriNonZero
+tb_qspi.user_project.i_peripherals.i_user_peri14.apu.NoiNonZero
+[pattern_trace] 1
+[pattern_trace] 0
