@@ -3,6 +3,9 @@
 .vscode
 *.vcd
 *.fst
+*.wav
+test/*.hex
+test/*.wav
 runs
 src/user_config.json
 src/config_merged.json

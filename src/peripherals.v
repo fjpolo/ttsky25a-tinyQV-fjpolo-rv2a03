@@ -217,6 +217,39 @@ module tinyQV_peripherals #(parameter CLOCK_MHZ=64) (
         .user_interrupt(user_interrupts[PERI_UART+1:PERI_UART])
     );
 
+`ifdef SIM_FAST
+    genvar peri_idx_low;
+    generate
+        tqvp_full_empty i_stub03 (
+            .clk(clk),
+            .rst_n(rst_n),
+            .ui_in(ui_in),
+            .uo_out(uo_out_from_user_peri[3]),
+            .address(addr_in[5:0]),
+            .data_in(data_in),
+            .data_write_n(data_write_n    | {2{~peri_user[3]}}),
+            .data_read_n(data_read_n_peri | {2{~peri_user[3]}}),
+            .data_out(data_from_user_peri[3]),
+            .data_ready(data_ready_from_user_peri[3]),
+            .user_interrupt()
+        );
+        for (peri_idx_low = 4; peri_idx_low < 14; peri_idx_low = peri_idx_low + 1) begin : gen_fast_peri_low
+            tqvp_full_empty i_stub (
+                .clk(clk),
+                .rst_n(rst_n),
+                .ui_in(ui_in),
+                .uo_out(uo_out_from_user_peri[peri_idx_low]),
+                .address(addr_in[5:0]),
+                .data_in(data_in),
+                .data_write_n(data_write_n    | {2{~peri_user[peri_idx_low]}}),
+                .data_read_n(data_read_n_peri | {2{~peri_user[peri_idx_low]}}),
+                .data_out(data_from_user_peri[peri_idx_low]),
+                .data_ready(data_ready_from_user_peri[peri_idx_low]),
+                .user_interrupt(user_interrupts[peri_idx_low])
+            );
+        end
+    endgenerate
+`else
     // Peripheral 3 is a full peripheral but with no interrupt
     tqvp_game_pmod i_user_peri03(
         .clk(clk),
@@ -427,8 +460,9 @@ module tinyQV_peripherals #(parameter CLOCK_MHZ=64) (
 
         .user_interrupt(user_interrupts[13])
     );
+`endif
 
-    tqvp_full_empty i_user_peri14 (
+    tqvp_fjpolo_rv2a03 i_user_peri14 (
         .clk(clk),
         .rst_n(rst_n),
 
@@ -447,6 +481,43 @@ module tinyQV_peripherals #(parameter CLOCK_MHZ=64) (
         .user_interrupt(user_interrupts[14])
     );
 
+`ifdef SIM_FAST
+    genvar peri_idx_high;
+    generate
+        tqvp_full_empty i_stub15 (
+            .clk(clk),
+            .rst_n(rst_n),
+            .ui_in(ui_in),
+            .uo_out(uo_out_from_user_peri[15]),
+            .address(addr_in[5:0]),
+            .data_in(data_in),
+            .data_write_n(data_write_n    | {2{~peri_user[15]}}),
+            .data_read_n(data_read_n_peri | {2{~peri_user[15]}}),
+            .data_out(data_from_user_peri[15]),
+            .data_ready(data_ready_from_user_peri[15]),
+            .user_interrupt(user_interrupts[15])
+        );
+        for (peri_idx_high = 16; peri_idx_high < 24; peri_idx_high = peri_idx_high + 1) begin : gen_fast_peri_high
+            tqvp_full_empty i_stub (
+                .clk(clk),
+                .rst_n(rst_n),
+                .ui_in(ui_in),
+                .uo_out(uo_out_from_user_peri[peri_idx_high]),
+                .address(addr_in[5:0]),
+                .data_in(data_in),
+                .data_write_n(data_write_n    | {2{~peri_user[peri_idx_high]}}),
+                .data_read_n(data_read_n_peri | {2{~peri_user[peri_idx_high]}}),
+                .data_out(data_from_user_peri[peri_idx_high]),
+                .data_ready(data_ready_from_user_peri[peri_idx_high]),
+                .user_interrupt()
+            );
+        end
+        for (peri_idx_high = 0; peri_idx_high < 16; peri_idx_high = peri_idx_high + 1) begin : gen_fast_simple_peri
+            assign data_from_simple_peri[peri_idx_high] = 8'h0;
+            assign uo_out_from_simple_peri[peri_idx_high] = 8'h0;
+        end
+    endgenerate
+`else
     mkTinyTone_Peripheral i_tinytone15 (
         .CLK(clk),
         .RST_N(rst_n),
@@ -850,5 +921,6 @@ module tinyQV_peripherals #(parameter CLOCK_MHZ=64) (
         .data_out(data_from_user_peri[23]),
         .data_ready(data_ready_from_user_peri[23])
     );
+`endif
 
 endmodule

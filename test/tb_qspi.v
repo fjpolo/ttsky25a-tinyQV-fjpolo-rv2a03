@@ -86,4 +86,13 @@ module tb_qspi ();
 
   defparam qspi.INIT_FILE = `PROG_FILE;
 
+`ifdef DUMP_VCD
+  initial begin
+    $dumpfile("tb_qspi.vcd");
+    $dumpvars(0, tb_qspi.user_project.i_peripherals.i_user_peri14);
+    $dumpvars(1, tb_qspi);
+    $dumpvars(1, user_project);
+  end
+`endif
+
 endmodule

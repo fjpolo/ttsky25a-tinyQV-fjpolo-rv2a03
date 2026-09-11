@@ -3,12 +3,24 @@
 
 # defaults
 SIM ?= icarus
-WAVES ?= 1
+WAVES ?= 0
+VCD ?= 0
+ifeq ($(VCD),1)
+COMPILE_ARGS += -DDUMP_VCD
+WAVES = 0
+endif
+
 TOPLEVEL_LANG ?= verilog
 PROG ?= hello
 PROG_FILE ?= $(PROG).hex
 SRC_DIR = $(PWD)/../src
+SIM_FAST ?= 1
+ifeq ($(SIM_FAST),1)
+COMPILE_ARGS += -DSIM_FAST
+PROJECT_SOURCES = project.v peri*.v tinyQV/cpu/*.v tinyQV/peri/uart/uart_tx.v user_peripherals/uart/*.v user_peripherals/RV2A03/*.v
+else
 PROJECT_SOURCES = project.v peri*.v tinyQV/cpu/*.v tinyQV/peri/uart/uart_tx.v user_peripherals/*/*.v user_peripherals/*.v user_peripherals/*.sv user_peripherals/*/*.sv
+endif
 
 VERILOG_SOURCES += sim_qspi.v
 COMPILE_ARGS +=  -DPROG_FILE=\"$(PROG_FILE)\"
